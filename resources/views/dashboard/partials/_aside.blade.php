@@ -1,9 +1,11 @@
 <!--begin::Aside-->
-<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto"
+     id="kt_aside">
     <!--begin::Brand-->
-    <div class="brand flex-column-auto" id="kt_brand">
+    <div class="brand flex-column-auto"
+         id="kt_brand">
         <!--begin::Logo-->
-        <a href="index.html" class="brand-logo">
+        <a href="/" class="brand-logo">
             <img alt="Logo" src="{{asset('dashboard/assets/media/logos/logo-light.png')}}"/>
         </a>
         <!--end::Logo-->
@@ -11,9 +13,12 @@
         <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
        <span class="svg-icon svg-icon svg-icon-xl">
         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+        <svg xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             width="24px" height="24px"
              viewBox="0 0 24 24" version="1.1">
-         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+         <g stroke="none" stroke-width="1"
+            fill="none" fill-rule="evenodd">
           <polygon points="0 0 24 0 24 24 0 24"/>
           <path
               d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
@@ -32,14 +37,19 @@
     </div>
     <!--end::Brand-->
     <!--begin::Aside Menu-->
-    <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+    <div class="aside-menu-wrapper flex-column-fluid"
+         id="kt_aside_menu_wrapper">
         <!--begin::Menu Container-->
-        <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
+        <div id="kt_aside_menu"
+             class="aside-menu my-4"
+             data-menu-vertical="1"
+             data-menu-scroll="1"
              data-menu-dropdown-timeout="500">
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
-                <li class="menu-item menu-item-active" aria-haspopup="true">
-                    <a href="index.html" class="menu-link">
+                <li class="menu-item menu-item-active-n"
+                    aria-haspopup="true">
+                    <a href="/" class="menu-link">
           <span class="svg-icon menu-icon">
            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -60,43 +70,42 @@
                     </a>
                 </li>
 
-
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-          <span class="svg-icon menu-icon">
-
-          <i class="fa la-car"></i>
-              <!--end::Svg Icon-->
-          </span>
+                <li class="menu-item menu-item-submenu menu-item-open menu-item-here"
+                    aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:void(0)"
+                       class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon"><i class="la la-car-side"></i></span>
                         <span class="menu-text">السيارت</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true"
+                            <li class="menu-item menu-item-submenu menu-item-open menu-item-here"
+                                aria-haspopup="true"
                                 data-menu-toggle="hover">
-                                <a href="javascript:;" class="menu-link menu-toggle">
+                                <a href="javascript:void(0)"
+                                   class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text"> السيارت</span>
+                                    <span class="menu-text">السيارت</span>
                                     <i class="menu-arrow"></i>
                                 </a>
                                 <div class="menu-submenu">
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="" class="menu-link">
+                                            <a href="{{route('cars')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
                                                 <span class="menu-text">كافة السيارت</span>
                                             </a>
                                         </li>
-                                        <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/list-datatable.html" class="menu-link">
+                                        <li class="menu-item menu-item-active" aria-haspopup="true">
+                                            <a href="{{route('new-car')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -107,52 +116,59 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true"
+                            <li class="menu-item menu-item-submenu"
+                                aria-haspopup="true"
                                 data-menu-toggle="hover">
-                                <a href="javascript:;" class="menu-link menu-toggle">
+                                <a href="javascript:void(0)"
+                                   class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text"> الفئات</span>
+                                    <span class="menu-text">الماركات</span>
                                     <i class="menu-arrow"></i>
                                 </a>
                                 <div class="menu-submenu">
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="" class="menu-link">
+                                            <a href="{{route('brands')}}"
+                                               class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
-                                                <span class="menu-text">كافة الفئات</span>
+                                                <span class="menu-text">كافة الماركات</span>
                                             </a>
                                         </li>
-                                        <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/list-datatable.html" class="menu-link">
+                                        <li class="menu-item"
+                                            aria-haspopup="true">
+                                            <a href="{{route('new-brand')}}"
+                                               class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
-                                                <span class="menu-text">أضف فئة</span>
+                                                <span class="menu-text">أضف ماركة</span>
                                             </a>
                                         </li>
 
                                     </ul>
                                 </div>
                             </li>
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true"
+                            <li class="menu-item menu-item-submenu"
+                                aria-haspopup="true"
                                 data-menu-toggle="hover">
-                                <a href="javascript:;" class="menu-link menu-toggle">
+                                <a href="javascript:void(0)"
+                                   class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text"> الضرائب</span>
+                                    <span class="menu-text">الضرائب</span>
                                     <i class="menu-arrow"></i>
                                 </a>
                                 <div class="menu-submenu">
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="" class="menu-link">
+                                            <a href="{{route('taxes')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -160,7 +176,7 @@
                                             </a>
                                         </li>
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="custom/apps/user/list-datatable.html" class="menu-link">
+                                            <a href="{{route('new-tax')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -175,8 +191,133 @@
                     </div>
                 </li>
 
+                <li class="menu-item menu-item-submenu"
+                    aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:void(0)"
+                       class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon"><i class="la la-map-marked"></i> </span>
+                        <span class="menu-text">الفروع</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="{{route('branches')}}"
+                                   class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">كافة الفروع</span>
+                                </a>
+                            </li>
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="{{route('new-branches')}}"
+                                   class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">إضافة فرع</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
+                <li class="menu-item menu-item-submenu"
+                    aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:void(0)"
+                       class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon"><i class=" flaticon-list"></i> </span>
+                        <span class="menu-text">الصفحات</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">كافة الصفحات</span>
+                                </a>
+                            </li>
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">إضافة صفحة</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
+                <li class="menu-item"
+                    aria-haspopup="true">
+                    <a href="/" class="menu-link">
+                        <span class="svg-icon menu-icon"><i class="la la-users"></i> </span>
+                        <span class="menu-text">الأعضاء</span>
+                    </a>
+                </li>
+
+                <li class="menu-item"
+                    aria-haspopup="true">
+                    <a href="/" class="menu-link">
+                        <span class="svg-icon menu-icon"><i class="la la-clipboard-check"></i> </span>
+                        <span class="menu-text">الحجزات</span>
+                    </a>
+                </li>
+
+                <li class="menu-item"
+                    aria-haspopup="true">
+                    <a href="/" class="menu-link">
+                        <span class="svg-icon menu-icon"><i class="la la-envelope-open"></i> </span>
+                        <span class="menu-text">طلبات التواصل</span>
+                    </a>
+                </li>
+
+                <li class="menu-item menu-item-submenu"
+                    aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:void(0)"
+                       class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon"><i class="la la-users-cog"></i> </span>
+                        <span class="menu-text">الإدارة</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">كافة المدريين</span>
+                                </a>
+                            </li>
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">إضافة مدرب</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
             </ul>
             <!--end::Menu Nav-->

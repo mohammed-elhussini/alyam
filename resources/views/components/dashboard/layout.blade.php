@@ -30,13 +30,21 @@
           type="text/css"/>
     <link href="{{asset('dashboard/assets/css/themes/layout/brand/dark.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('dashboard/assets/css/themes/layout/aside/dark.css')}}" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
+    @stack('styles')
+
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{{asset('dashboard/assets/media/logos/favicon.ico')}}"/>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
 <body id="kt_body"
-      class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+      class="subheader-enabled  aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 <!--begin::Main-->
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
@@ -89,11 +97,61 @@
 
         @include('dashboard.partials._aside')
 
-{{--        @include('dashboard.partials._wrapper')--}}
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <!--begin::Header-->
+            <div id="kt_header" class="header">
+                <!--begin::Container-->
+                <div class="container-fluid d-flex align-items-stretch justify-content-between">
 
-        {{$slot}}
+                    <!--begin::Topbar-->
+                    <div class="topbar ml-auto">
+                        <!--begin::User-->
+                        <div class="topbar-item">
+                            <div
+                                class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2"
+                                id="kt_quick_user_toggle">
+                                <span
+                                    class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">أهلا,</span>
+                                <span
+                                    class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">الحسينى</span>
+                                <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
+           <span class="symbol-label font-size-h5 font-weight-bold">E</span>
+          </span>
+                            </div>
+                        </div>
+                        <!--end::User-->
+                    </div>
+                    <!--end::Topbar-->
+                </div>
+                <!--end::Container-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 
+                {{$slot}}
 
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+                <!--begin::Container-->
+                <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+                    <!--begin::Copyright-->
+                    <div class="text-dark order-2 order-md-1 ml-auto">
+                        <span class="text-muted font-weight-bold mr-2">2020©</span>
+                        <a href="" target="_blank"
+                           class="text-dark-75 text-hover-primary">جميع الحقوق محفوظه لـ الحسينى</a>
+                    </div>
+                    <!--end::Copyright-->
+
+                </div>
+                <!--end::Container-->
+            </div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
     </div>
     <!--end::Page-->
 </div>
@@ -182,17 +240,17 @@
 </div>
 
 
-
 <script src="{{asset('dashboard/assets/plugins/global/plugins.bundle.js')}}"></script>
 <script src="{{asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
 <script src="{{asset('dashboard/assets/js/scripts.bundle.js')}}"></script>
 <!--end::Global Theme Bundle-->
-<!--begin::Page Vendors(used by this page)-->
-<script src="{{asset('dashboard/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js')}}"></script>
-<!--end::Page Vendors-->
-<!--begin::Page Scripts(used by this page)-->
-<script src="{{asset('dashboard/assets/js/pages/widgets.js')}}"></script>
-<!--end::Page Scripts-->
+
+
+
+
+@stack('scripts')
+
+
 </body>
 <!--end::Body-->
 </html>
