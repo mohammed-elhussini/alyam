@@ -89,7 +89,9 @@
 
         @include('dashboard.partials._aside')
 
-        @include('dashboard.partials._wrapper')
+{{--        @include('dashboard.partials._wrapper')--}}
+
+        {{$slot}}
 
 
     </div>
@@ -102,9 +104,12 @@
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
         <h3 class="font-weight-bold m-0">
             User Profile
-            <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+            <a href="#"
+               class="btn btn-xs btn-icon btn-light btn-hover-primary"
+               id="kt_quick_user_close">
                 <i class="ki ki-close icon-xs text-muted"></i>
             </a>
+        </h3>
     </div>
     <!--end::Header-->
     <!--begin::Content-->
