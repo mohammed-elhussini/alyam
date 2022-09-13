@@ -15,7 +15,7 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">كل السيارات</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">طلبات الحجز</h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
@@ -1320,13 +1320,12 @@
             </div>
         </div>
         <!--end::Card-->
-
     </x-dashboard.wrap>
 
+        @push('scripts')
+            <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+            <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/scrollable.js')}}"></script>
+        @endpush
 
-    @push('scripts')
-        <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-        <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/scrollable.js')}}"></script>
-    @endpush
 
 </x-dashboard.layout>

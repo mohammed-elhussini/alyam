@@ -176,7 +176,6 @@
                                    name="demo0"
                                    placeholder="السعر"/>
                         </div>
-
                         <div class="form-group w-100">
                         <div id="kt_repeater_3">
                             <div class="form-group">
@@ -262,7 +261,6 @@
                             </div>
                         </div>
                         </div>
-
                     </div>
 
                     <!--end::Body-->
@@ -285,18 +283,8 @@
 
     @push('scripts')
 
-        <!--begin::Page Vendors(used by this page)-->
-
-
-
         <script src="{{asset('dashboard/assets/plugins/custom/ckeditor/ckeditor-document.bundle.js')}}"></script>
         <script src="{{asset('dashboard/assets/js/pages/crud/forms/editors/ckeditor-document.js')}}"></script>
-
-
-
-
-        <!--end::Page Scripts-->
-
 
         <script>
 
@@ -424,6 +412,7 @@
             });
 
         </script>
+
     @endpush
 
 </x-dashboard.layout>

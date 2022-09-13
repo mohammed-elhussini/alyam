@@ -47,9 +47,9 @@
              data-menu-dropdown-timeout="500">
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
-                <li class="menu-item menu-item-active-n"
+                <li class="menu-item menu-item-active"
                     aria-haspopup="true">
-                    <a href="/" class="menu-link">
+                    <a href="{{route('admin')}}" class="menu-link">
           <span class="svg-icon menu-icon">
            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -70,7 +70,7 @@
                     </a>
                 </li>
 
-                <li class="menu-item menu-item-submenu menu-item-open menu-item-here"
+                <li class="menu-item menu-item-submenu-n menu-item-open-n menu-item-here-n"
                     aria-haspopup="true"
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
@@ -82,7 +82,7 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item menu-item-submenu menu-item-open menu-item-here"
+                            <li class="menu-item menu-item-submenu menu-item-open-n menu-item-here-n"
                                 aria-haspopup="true"
                                 data-menu-toggle="hover">
                                 <a href="javascript:void(0)"
@@ -104,7 +104,8 @@
                                                 <span class="menu-text">كافة السيارت</span>
                                             </a>
                                         </li>
-                                        <li class="menu-item menu-item-active" aria-haspopup="true">
+                                        <li class="menu-item menu-item-active-n"
+                                            aria-haspopup="true">
                                             <a href="{{route('new-car')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
@@ -232,7 +233,7 @@
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
                        class="menu-link menu-toggle">
-                        <span class="svg-icon menu-icon"><i class=" flaticon-list"></i> </span>
+                        <span class="svg-icon menu-icon"><i class=" flaticon-list"></i></span>
                         <span class="menu-text">الصفحات</span>
                         <i class="menu-arrow"></i>
                     </a>
@@ -241,7 +242,7 @@
                         <ul class="menu-subnav">
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="" class="menu-link">
+                                <a href="{{route('pages')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -250,7 +251,7 @@
                             </li>
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="" class="menu-link">
+                                <a href="{{route('new-page')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -261,25 +262,53 @@
                     </div>
                 </li>
 
-                <li class="menu-item"
-                    aria-haspopup="true">
-                    <a href="/" class="menu-link">
-                        <span class="svg-icon menu-icon"><i class="la la-users"></i> </span>
+                <li class="menu-item menu-item-submenu"
+                    aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:void(0)"
+                       class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon"><i class="la la-users"></i></span>
                         <span class="menu-text">الأعضاء</span>
+                        <i class="menu-arrow"></i>
                     </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="{{route('users')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">كافة الأعضاء</span>
+                                </a>
+                            </li>
+                            <li class="menu-item"
+                                aria-haspopup="true">
+                                <a href="{{route('new-user')}}"
+                                   class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">إضافة عضو</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+
 
                 <li class="menu-item"
                     aria-haspopup="true">
-                    <a href="/" class="menu-link">
+                    <a href="{{route('orders')}}" class="menu-link">
                         <span class="svg-icon menu-icon"><i class="la la-clipboard-check"></i> </span>
-                        <span class="menu-text">الحجزات</span>
+                        <span class="menu-text">طلبات الحجز</span>
                     </a>
                 </li>
 
                 <li class="menu-item"
                     aria-haspopup="true">
-                    <a href="/" class="menu-link">
+                    <a href="{{route('contacts')}}" class="menu-link">
                         <span class="svg-icon menu-icon"><i class="la la-envelope-open"></i> </span>
                         <span class="menu-text">طلبات التواصل</span>
                     </a>

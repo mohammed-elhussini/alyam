@@ -1,11 +1,12 @@
 <x-dashboard.layout>
-
     @push('styles')
+
         <!--begin::Page Vendors Styles(used by this page)-->
         <link href="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.css')}}"
               rel="stylesheet"
               type="text/css"/>
         <!--end::Page Vendors Styles-->
+
     @endpush
 
     <!--begin::Subheader-->
