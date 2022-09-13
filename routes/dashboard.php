@@ -90,5 +90,13 @@ Route::prefix("admin")->group(function(){
     Route::get('/contacts/show', function () {
         return view('dashboard.contacts.show');
     })->name('view-contact');
+//
+    Route::get('/management', function () {
+        return view('dashboard.management.index');
+    })->name('management');
+
+    Route::get('/management/create', function () {
+        return view('dashboard.management.create');
+    })->name('new-management');
 
 });

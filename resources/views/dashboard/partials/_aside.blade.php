@@ -328,7 +328,7 @@
                         <ul class="menu-subnav">
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="" class="menu-link">
+                                <a href="{{route('management')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -337,11 +337,11 @@
                             </li>
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="" class="menu-link">
+                                <a href="{{route('new-management')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">إضافة مدرب</span>
+                                    <span class="menu-text">إضافة مدير</span>
                                 </a>
                             </li>
                         </ul>
