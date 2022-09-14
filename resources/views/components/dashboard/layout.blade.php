@@ -45,6 +45,32 @@
 <!--begin::Body-->
 <body id="kt_body"
       class="subheader-enabled  aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+
+
+
+
+
+
+
+
+
+
+
+
+<x-dashboard.flash-message/>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--begin::Main-->
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">

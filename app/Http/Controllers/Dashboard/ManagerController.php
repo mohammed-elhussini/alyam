@@ -20,7 +20,7 @@ class ManagerController extends Controller
 //        ]);
 
         $managers = Manager::all();
-        return view('dashboard.managers.index',compact('managers'));
+        return view('dashboard.managers.index', compact('managers'));
     }
 
     /**
@@ -36,7 +36,7 @@ class ManagerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +47,7 @@ class ManagerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -58,7 +58,7 @@ class ManagerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Manager $manager)
@@ -70,26 +70,60 @@ class ManagerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update( Manager $manager)
+    public function update(Manager $manager)
     {
+        //dd(request());
+        $attributes = request()->validate([
+            'username' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|unique:managers,email,' . $manager->id . ',id',
+            'avatar' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        ]);
 
-        //   dd(request());
-        dd(request());
+        $avatarPath = null;
+        if (request()->hasFile('avatar')) {
 
+            $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME) ;
+            $avatarExt = request()->file('avatar')->getClientOriginalExtension() ;
+            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+
+            $avatarPath = request()->file('avatar')->storeAs(
+                'uploads/managers',
+                 $avatarNewName,
+                'public',
+            );
+            $attributes['avatar'] = $avatarPath;
+        }
+
+        if (request('password')) {
+            $attributes['password'] = Hash::make(request('password'));
+        }
+
+        $manager->update($attributes);
+
+        return redirect('admin/managers')->with('message', 'Manger updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
+
+//    private function storeImage()
+//    {
+//        $newImageName = uniqid() . '-' . request()->title . '. ' . request()->file->extension();
+//        return request()->file->move(public_path('uploads/managers'),$newImageName);
+//    }
 }

@@ -76,7 +76,7 @@
                             <td>{{$manager->id}}</td>
                             <td>
                                 <div class="symbol symbol-70">
-                                    <img class="" src="{{$manager->avatar}}">
+                                    <img class="" src="{{ asset('storage/'.$manager->avatar) }}">
                                 </div>
                             </td>
                             <td>{{$manager->username}}</td>
