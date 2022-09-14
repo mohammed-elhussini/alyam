@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', function () {
+    return view('dashboard.login');
+})->name('administrator');
+
 Route::prefix("admin")->group(function(){
+
+
 
 
     Route::get('/', function () {
@@ -91,12 +98,18 @@ Route::prefix("admin")->group(function(){
         return view('dashboard.contacts.show');
     })->name('view-contact');
 //
-    Route::get('/management', function () {
-        return view('dashboard.management.index');
-    })->name('management');
+//    Route::get('/managers', function () {
+//        return view('dashboard.managers.index');
+//    })->name('managers');
 
-    Route::get('/management/create', function () {
-        return view('dashboard.management.create');
-    })->name('new-management');
+//    Route::get('/managers/create', function () {
+//        return view('dashboard.managers.create');
+//    })->name('new-manager');
+
+    Route::get('/managers',[ManagerController::class,'index'])->name('managers');
+    Route::get('/managers/{manager}/edit',[ManagerController::class,'edit']);
+    Route::put('/managers/{manager}',[ManagerController::class,'update']);
+
+
 
 });
