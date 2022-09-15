@@ -19,7 +19,7 @@ class ManagerController extends Controller
 //            'managers' => Manager::all()
 //        ]);
 
-        $managers = Manager::all();
+        $managers = Manager::latest()->get();
         return view('dashboard.managers.index', compact('managers'));
     }
 
@@ -30,7 +30,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.managers.create');
     }
 
     /**
@@ -39,9 +39,40 @@ class ManagerController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Manager $manager)
     {
-        //
+        $attributes = request()->validate([
+            'username' => 'required|unique:managers,username,'. $manager->id . ',id',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|unique:managers,email,' . $manager->id . ',id',
+            'password' => 'required|confirmed',
+            'avatar' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        ]);
+
+        $avatarPath = null;
+        if (request()->hasFile('avatar')) {
+
+            $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME) ;
+            $avatarExt = request()->file('avatar')->getClientOriginalExtension() ;
+            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+
+            $avatarPath = request()->file('avatar')->storeAs(
+                'uploads/managers',
+                $avatarNewName,
+                'public',
+            );
+            $attributes['avatar'] = $avatarPath;
+        }
+
+        if (request('password')) {
+            $attributes['password'] = bcrypt($attributes['password']);
+        }
+
+        Manager::create($attributes);
+
+        return redirect('admin/managers')->with('message', 'Manger added successfully!');
     }
 
     /**
@@ -50,9 +81,10 @@ class ManagerController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Manager $manager)
     {
-        //return view('categories.edit',compact('category'));
+
+        return view('dashboard.managers.show', compact('manager'));
     }
 
     /**
@@ -87,6 +119,7 @@ class ManagerController extends Controller
         ]);
 
         $avatarPath = null;
+
         if (request()->hasFile('avatar')) {
 
             $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME) ;
@@ -98,11 +131,11 @@ class ManagerController extends Controller
                  $avatarNewName,
                 'public',
             );
-            $attributes['avatar'] = $avatarPath;
-        }
 
+        }
+        $attributes['avatar'] = $avatarPath;
         if (request('password')) {
-            $attributes['password'] = Hash::make(request('password'));
+            $attributes['password'] = bcrypt($attributes['password']);
         }
 
         $manager->update($attributes);
@@ -121,9 +154,4 @@ class ManagerController extends Controller
         //
     }
 
-//    private function storeImage()
-//    {
-//        $newImageName = uniqid() . '-' . request()->title . '. ' . request()->file->extension();
-//        return request()->file->move(public_path('uploads/managers'),$newImageName);
-//    }
 }

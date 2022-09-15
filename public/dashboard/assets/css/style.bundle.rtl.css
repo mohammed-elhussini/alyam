@@ -90041,3 +90041,11 @@ body {
         right: 70px
     }
 }
+/*elhussini*/
+.toast-message{
+    padding-inline-start: 30px;
+}
+.toast-close-button {
+    position: relative;
+    right: 100%;
+}

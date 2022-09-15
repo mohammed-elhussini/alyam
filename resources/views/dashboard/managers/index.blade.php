@@ -76,13 +76,21 @@
                             <td>{{$manager->id}}</td>
                             <td>
                                 <div class="symbol symbol-70">
-                                    <img class="" src="{{ asset('storage/'.$manager->avatar) }}">
+                                    <img class="" src="{{$manager->avatar ? asset('storage/'.$manager->avatar) : asset('dashboard/assets/media/users/blank.png') }}">
                                 </div>
                             </td>
                             <td>{{$manager->username}}</td>
                             <td>{{$manager->phone}}</td>
                             {{--                        <td>{{$manager->phone}}</td>--}}
                             <td>
+                                <a href="/admin/managers/{{$manager->id}}/"
+                                   class="btn btn-sm btn-clean btn-icon mr-2"
+                                   title="Edit details">
+                                    <span class="svg-icon svg-icon-md">
+                                       <i class="icon-xl la la-eye"></i>
+                                    </span>
+                                </a>
+
                                 <a href="/admin/managers/{{$manager->id}}/edit"
                                    class="btn btn-sm btn-clean btn-icon mr-2"
                                    title="Edit details">

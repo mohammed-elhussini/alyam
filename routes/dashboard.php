@@ -109,7 +109,9 @@ Route::prefix("admin")->group(function(){
     Route::get('/managers',[ManagerController::class,'index'])->name('managers');
     Route::get('/managers/{manager}/edit',[ManagerController::class,'edit']);
     Route::put('/managers/{manager}',[ManagerController::class,'update']);
-
+    Route::get('/managers/create',[ManagerController::class,'create'])->name('new-manager');
+    Route::post('/managers',[ManagerController::class,'store']);
+    Route::get('/managers/{manager}',[ManagerController::class,'show']);
 
 
 });

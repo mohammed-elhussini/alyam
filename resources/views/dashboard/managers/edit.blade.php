@@ -51,7 +51,7 @@
                                              id="kt_image"
                                              style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
                                             <div class="image-input-wrapper"
-                                                 style="background-image: url('{{ asset('storage/'.$manager->avatar) }}')"></div>
+                                                 style="background-image: url('{{$manager->avatar ? asset('storage/'.$manager->avatar) : asset('dashboard/assets/media/users/blank.png') }}')"></div>
 
                                             <label
                                                 class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
