@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ManagerController;
+use App\Http\Controllers\Dashboard\dashboardAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +16,20 @@ use App\Http\Controllers\Dashboard\ManagerController;
 |
 */
 
-Route::get('/login', function () {
-    return view('dashboard.login');
-})->name('administrator');
-
-Route::prefix("admin")->group(function(){
+Route::get('/dashboard/login',[dashboardAuthController::class,'login']);
+Route::post('/dashboard/login',[dashboardAuthController::class,'authenticate']);
 
 
+Route::get('/forget', function () {
+    return view('dashboard.authentication.forget');
+})->name('forget');
+
+Route::prefix("admin")->group(function () {
 
 
     Route::get('/', function () {
         return view('dashboard.index');
-    })->name('admin');
+    })->name('dashboard');
 
 //
     Route::get('/cars', function () {
@@ -98,20 +101,18 @@ Route::prefix("admin")->group(function(){
         return view('dashboard.contacts.show');
     })->name('view-contact');
 //
-//    Route::get('/managers', function () {
-//        return view('dashboard.managers.index');
-//    })->name('managers');
 
-//    Route::get('/managers/create', function () {
-//        return view('dashboard.managers.create');
-//    })->name('new-manager');
 
-    Route::get('/managers',[ManagerController::class,'index'])->name('managers');
-    Route::get('/managers/{manager}/edit',[ManagerController::class,'edit']);
-    Route::put('/managers/{manager}',[ManagerController::class,'update']);
-    Route::get('/managers/create',[ManagerController::class,'create'])->name('new-manager');
-    Route::post('/managers',[ManagerController::class,'store']);
-    Route::get('/managers/{manager}',[ManagerController::class,'show']);
+//    Route::get('/managers',[ManagerController::class,'index'])->name('managers');
+//    Route::get('/managers/{manager}/edit',[ManagerController::class,'edit']);
+//    Route::put('/managers/{manager}',[ManagerController::class,'update']);
+//    Route::get('/managers/create',[ManagerController::class,'create'])->name('new-manager');
+//    Route::post('/managers',[ManagerController::class,'store']);
+//    Route::get('/managers/{manager}',[ManagerController::class,'show']);
+//    Route::delete('/managers/{manager}',[ManagerController::class,'destroy']);
+
+
+    Route::resource('managers', ManagerController::class);
 
 
 });

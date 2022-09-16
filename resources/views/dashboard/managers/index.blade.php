@@ -37,7 +37,8 @@
                 <div class="card-toolbar">
 
                     <!--begin::Button-->
-                    <a href="" class="btn btn-primary font-weight-bolder">
+                    <a href="{{route('managers.create')}}"
+                       class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg"
@@ -76,14 +77,15 @@
                             <td>{{$manager->id}}</td>
                             <td>
                                 <div class="symbol symbol-70">
-                                    <img class="" src="{{$manager->avatar ? asset('storage/'.$manager->avatar) : asset('dashboard/assets/media/users/blank.png') }}">
+                                    <img class=""
+                                         src="{{$manager->avatar ? asset('storage/'.$manager->avatar) : asset('dashboard/assets/media/users/blank.png') }}">
                                 </div>
                             </td>
                             <td>{{$manager->username}}</td>
                             <td>{{$manager->phone}}</td>
                             {{--                        <td>{{$manager->phone}}</td>--}}
                             <td>
-                                <a href="/admin/managers/{{$manager->id}}/"
+                                <a href="{{route('managers.show',$manager->id)}}/"
                                    class="btn btn-sm btn-clean btn-icon mr-2"
                                    title="Edit details">
                                     <span class="svg-icon svg-icon-md">
@@ -91,20 +93,29 @@
                                     </span>
                                 </a>
 
-                                <a href="/admin/managers/{{$manager->id}}/edit"
+                                <a href="{{route('managers.edit',$manager->id)}}"
                                    class="btn btn-sm btn-clean btn-icon mr-2"
                                    title="Edit details">
                                     <span class="svg-icon svg-icon-md">
                                        <i class="icon-xl la la-pencil-alt"></i>
                                     </span>
                                 </a>
-                                <a href="javascript:;"
-                                   class="btn btn-sm btn-clean btn-icon"
-                                   title="Delete">
+
+                                <form class="d-inline-flex"
+                                      method="post"
+                                      action="{{route('managers.destroy',$manager->id)}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit"
+                                            id="kt_sweetalert_demo_9"
+                                            class="btn btn-sm btn-clean btn-icon"
+                                            title="Delete">
                                 <span class="svg-icon svg-icon-md">
                                     <i class="icon-xl la la-trash-alt"></i>
                                 </span>
-                                </a>
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
                     @endforeach
@@ -117,13 +128,12 @@
 
     </x-dashboard.wrap>
 
-
     @push('scripts')
         <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+        <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>
+
         <script>
             jQuery(document).ready(function () {
-
-
                 $('#kt_datatable').DataTable({
                     pagingType: 'full_numbers',
                     scrollY: 500,
@@ -138,8 +148,35 @@
                     },
                 });
 
-            });
 
+                $("#kt_sweetalert_demo_9").click(function (e) {
+                    var form = $(this).closest("form");
+                    var name = $(this).data("name");
+                    event.preventDefault();
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                        customClass: {
+                            confirmButton: "btn btn-danger",
+                            cancelButton: "btn btn-light-primary"
+                        }
+                    }).then(function (result) {
+                        if (result.value) {
+                            Swal.fire(
+                                "Deleted!",
+                                "Your file has been deleted.",
+                                "success"
+                            )
+                            form.submit()
+                        }
+                    });
+                });
+
+
+            });
         </script>
     @endpush
 

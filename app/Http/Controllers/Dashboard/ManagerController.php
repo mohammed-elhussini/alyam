@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
 {
@@ -39,10 +40,10 @@ class ManagerController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Manager $manager)
+    public function store(Request $request, Manager $manager)
     {
         $attributes = request()->validate([
-            'username' => 'required|unique:managers,username,'. $manager->id . ',id',
+            'username' => 'required|unique:managers,username,' . $manager->id . ',id',
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
@@ -54,8 +55,8 @@ class ManagerController extends Controller
         $avatarPath = null;
         if (request()->hasFile('avatar')) {
 
-            $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME) ;
-            $avatarExt = request()->file('avatar')->getClientOriginalExtension() ;
+            $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
+            $avatarExt = request()->file('avatar')->getClientOriginalExtension();
             $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
 
             $avatarPath = request()->file('avatar')->storeAs(
@@ -66,9 +67,8 @@ class ManagerController extends Controller
             $attributes['avatar'] = $avatarPath;
         }
 
-        if (request('password')) {
-            $attributes['password'] = bcrypt($attributes['password']);
-        }
+//        $attributes['password'] = bcrypt($attributes['password']);
+        $attributes['password'] = Hash::make(request('password'));
 
         Manager::create($attributes);
 
@@ -83,7 +83,6 @@ class ManagerController extends Controller
      */
     public function show(Manager $manager)
     {
-
         return view('dashboard.managers.show', compact('manager'));
     }
 
@@ -122,24 +121,25 @@ class ManagerController extends Controller
 
         if (request()->hasFile('avatar')) {
 
-            $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME) ;
-            $avatarExt = request()->file('avatar')->getClientOriginalExtension() ;
+            $avatarName = pathinfo(request()->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
+            $avatarExt = request()->file('avatar')->getClientOriginalExtension();
             $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
 
             $avatarPath = request()->file('avatar')->storeAs(
                 'uploads/managers',
-                 $avatarNewName,
+                $avatarNewName,
                 'public',
             );
 
         }
         $attributes['avatar'] = $avatarPath;
+
         if (request('password')) {
-            $attributes['password'] = bcrypt($attributes['password']);
+//            $attributes['password'] = bcrypt($attributes['password']);
+            $attributes['password'] = Hash::make(request('password'));
         }
 
         $manager->update($attributes);
-
         return redirect('admin/managers')->with('message', 'Manger updated successfully!');
     }
 
@@ -149,9 +149,11 @@ class ManagerController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Manager $manager)
     {
-        //
+        if (is_file($manager->avatar)) unlink($manager->avatar);
+        $manager->delete();
+        return back();
     }
 
 }

@@ -29,24 +29,23 @@
 
         <!--begin::Card-->
         <div class="card ">
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="post"
-                  action="/admin/managers/"
+                  action="{{route('managers.store')}}"
                   enctype="multipart/form-data">
                 @csrf
                 <!--begin::Card body-->
                 <div class="card-body">
-
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
 
                     <!--begin::Row-->
                     <div class="row justify-content-center">
@@ -74,6 +73,7 @@
                                             <i class="fa fa-pen icon-sm text-muted"></i>
                                             <input type="file"
                                                    name="avatar"
+                                                   value="{{old('avatar')}}"
                                                    accept=".png, .jpg, .jpeg"/>
 
                                         </label>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Custom Styles(used by this page)-->
-    <link href="{{asset('dashboard/assets/css/pages/login/classic/login-4.css')}}" rel="stylesheet" type="text/css" />
+    {{--    <link href="{{asset('dashboard/assets/css/pages/login/classic/login-4.css')}}" rel="stylesheet" type="text/css" />--}}
     <!--end::Page Custom Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
     <link href="{{asset('dashboard/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
                     <a href="#">
-                        <img src="assets/media/logos/logo-letter-13.png" class="max-h-75px" alt="" />
+                        <img src="{{asset('dashboard/assets/media/logos/logo-letter-13.png')}}" class="max-h-75px" alt="" />
                     </a>
                 </div>
                 <!--end::Login Header-->
@@ -61,14 +61,11 @@
                                     <input type="checkbox" name="remember" />
                                     <span></span>Remember me</label>
                             </div>
-                            <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">Forget Password ?</a>
+
                         </div>
                         <button id="kt_login_signin_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
                     </form>
-                    <div class="mt-10">
-                        <span class="opacity-70 mr-4">Don't have an account yet?</span>
-                        <a href="javascript:;" id="kt_login_signup" class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
-                    </div>
+
                 </div>
                 <!--end::Login Sign in form-->
                 <!--begin::Login Sign up form-->

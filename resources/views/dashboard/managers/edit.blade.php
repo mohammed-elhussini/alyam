@@ -30,7 +30,7 @@
         <!--begin::Card-->
         <div class="card ">
             <form method="post"
-                  action="/admin/managers/{{$manager->id}}"
+                  action="{{route('managers.update',$manager->id)}}"
                   enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
