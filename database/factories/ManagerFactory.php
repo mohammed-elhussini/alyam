@@ -25,7 +25,7 @@ class ManagerFactory extends Factory
             'phone'          => $this->faker->phoneNumber(),
             'email'          => $this->faker->unique()->safeEmail(),
             'password'       => Hash::make('123456'), // password
-            'avatar'          => $this->faker->imageUrl(),
+            'avatar'         => $this->faker->imageUrl(),
         ];
     }
 }

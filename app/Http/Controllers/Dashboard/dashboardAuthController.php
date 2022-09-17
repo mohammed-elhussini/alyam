@@ -25,7 +25,7 @@ class dashboardAuthController extends Controller
         if (Auth::guard('dashboard')->attempt($attributes)) {
             request()->session()->regenerate();
             // Authentication passed...
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('dashboard'))->with('message','login');
         }
 
         return back()->withErrors([
@@ -37,7 +37,7 @@ class dashboardAuthController extends Controller
     public function logout()
     {
         Auth::guard('dashboard')->logout();
-        return redirect('dashboard/login')->with('success','Logout');
+        return redirect('dashboard/login')->with('message','Logout');
     }
 
 }

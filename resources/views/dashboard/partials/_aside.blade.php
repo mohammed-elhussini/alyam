@@ -308,7 +308,7 @@
 
                 <li class="menu-item"
                     aria-haspopup="true">
-                    <a href="{{route('contacts')}}" class="menu-link">
+                    <a href="{{route('contacts.index')}}" class="menu-link">
                         <span class="svg-icon menu-icon"><i class="la la-envelope-open"></i> </span>
                         <span class="menu-text">طلبات التواصل</span>
                     </a>

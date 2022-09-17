@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ManagerController;
+use \App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\dashboardAuthController;
 
 /*
@@ -45,6 +46,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'dashboardAuth'], function()
 //    Route::get('/managers/{manager}',[ManagerController::class,'show']);
 //    Route::delete('/managers/{manager}',[ManagerController::class,'destroy']);
     Route::resource('managers', ManagerController::class);
+
+    Route::resource('contacts', ContactController::class)->only(['index', 'show','destroy']);
 
 //
     Route::get('/cars', function () {
@@ -108,12 +111,5 @@ Route::group(['prefix' => 'admin',  'middleware' => 'dashboardAuth'], function()
         return view('dashboard.orders.show');
     })->name('view-order');
 //
-    Route::get('/contacts', function () {
-        return view('dashboard.contacts.index');
-    })->name('contacts');
-
-    Route::get('/contacts/show', function () {
-        return view('dashboard.contacts.show');
-    })->name('view-contact');
 
 });

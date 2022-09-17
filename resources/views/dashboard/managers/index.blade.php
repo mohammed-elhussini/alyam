@@ -85,7 +85,7 @@
                             <td>{{$manager->phone}}</td>
                             {{--                        <td>{{$manager->phone}}</td>--}}
                             <td>
-                                <a href="{{route('managers.show',$manager->id)}}/"
+                                <a href="{{route('managers.show',$manager->id)}}"
                                    class="btn btn-sm btn-clean btn-icon mr-2"
                                    title="Edit details">
                                     <span class="svg-icon svg-icon-md">
