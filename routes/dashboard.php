@@ -15,21 +15,36 @@ use App\Http\Controllers\Dashboard\dashboardAuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('dashboardAuthLogin')->group(function () {
 
-Route::get('/dashboard/login',[dashboardAuthController::class,'login']);
-Route::post('/dashboard/login',[dashboardAuthController::class,'authenticate']);
+    Route::get('/dashboard/login',[dashboardAuthController::class,'login']);
+    Route::post('/dashboard/login',[dashboardAuthController::class,'authenticate']);
+    Route::get('/forget', function () {
+        return view('dashboard.authentication.forget');
+    })->name('forget');
+
+});
 
 
-Route::get('/forget', function () {
-    return view('dashboard.authentication.forget');
-})->name('forget');
 
-Route::prefix("admin")->group(function () {
-
+Route::group(['prefix' => 'admin',  'middleware' => 'dashboardAuth'], function()
+{
 
     Route::get('/', function () {
         return view('dashboard.index');
     })->name('dashboard');
+
+    //
+    Route::get('/logout', [dashboardAuthController::class,'logout'])->name('logout');
+//
+//    Route::get('/managers',[ManagerController::class,'index'])->name('managers');
+//    Route::get('/managers/{manager}/edit',[ManagerController::class,'edit']);
+//    Route::put('/managers/{manager}',[ManagerController::class,'update']);
+//    Route::get('/managers/create',[ManagerController::class,'create'])->name('new-manager');
+//    Route::post('/managers',[ManagerController::class,'store']);
+//    Route::get('/managers/{manager}',[ManagerController::class,'show']);
+//    Route::delete('/managers/{manager}',[ManagerController::class,'destroy']);
+    Route::resource('managers', ManagerController::class);
 
 //
     Route::get('/cars', function () {
@@ -100,19 +115,5 @@ Route::prefix("admin")->group(function () {
     Route::get('/contacts/show', function () {
         return view('dashboard.contacts.show');
     })->name('view-contact');
-//
-
-
-//    Route::get('/managers',[ManagerController::class,'index'])->name('managers');
-//    Route::get('/managers/{manager}/edit',[ManagerController::class,'edit']);
-//    Route::put('/managers/{manager}',[ManagerController::class,'update']);
-//    Route::get('/managers/create',[ManagerController::class,'create'])->name('new-manager');
-//    Route::post('/managers',[ManagerController::class,'store']);
-//    Route::get('/managers/{manager}',[ManagerController::class,'show']);
-//    Route::delete('/managers/{manager}',[ManagerController::class,'destroy']);
-
-
-    Route::resource('managers', ManagerController::class);
-
 
 });
