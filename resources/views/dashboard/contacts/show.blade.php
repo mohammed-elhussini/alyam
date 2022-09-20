@@ -58,12 +58,24 @@
                     <!--begin::Info-->
                     <div class="mb-7">
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
+                            <span class="text-dark-75 font-weight-bolder mr-2">البريد الالكترونى:</span>
                             <a href="mailto:{{ $contact->email }}" class="text-muted text-hover-primary">{{ $contact->email }}</a>
                         </div>
                         <div class="d-flex justify-content-between align-items-cente my-1">
-                            <span class="text-dark-75 font-weight-bolder mr-2">Phone:</span>
+                            <span class="text-dark-75 font-weight-bolder mr-2">الهاتف:</span>
                             <a href="tel:{{ $contact->phone }}" class="text-muted text-hover-primary">{{ $contact->phone }}</a>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-cente my-1">
+                            <span class="text-dark-75 font-weight-bolder mr-2">تاريخ الارسال:</span>
+                            <span class="text-muted text-hover-primary">{{ $contact->created_at }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-cente my-1">
+                            <span class="text-dark-75 font-weight-bolder mr-2">تاريخ الارسال:</span>
+                            <span class="text-muted text-hover-primary">{{$contact->created_at->diffForHumans()}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-cente my-1">
+                            <span class="text-dark-75 font-weight-bolder mr-2">تاريخ الارسال:</span>
+                            <span class="text-muted text-hover-primary">{{ $contact->created_at->format('d/m/y') }}</span>
                         </div>
 
                     </div>
@@ -71,10 +83,15 @@
                 </div>
                 <!--end::Body-->
                 <div class="card-footer bg-gray-100">
-                    <button type="submit"
-                            class="btn btn-danger btn-block font-weight-bolder">
-                        حذف
-                    </button>
+<form method="post" action="{{route('contacts.destroy', $contact->id)}}">
+    @csrf
+    @method('delete')
+    <button type="submit"
+            id="kt_sweetalert"
+            class="btn btn-danger btn-block font-weight-bolder">
+        حذف
+    </button>
+</form>
                 </div>
             </div>
             <!--end::Card-->
@@ -83,6 +100,40 @@
     </x-dashboard.wrap>
 
     @push('scripts')
+        <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+        <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>
+
+        <script>
+            jQuery(document).ready(function () {
+
+                //
+                $("#kt_sweetalert").click(function (e) {
+                    var form = $(this).closest("form");
+                    var name = $(this).data("name");
+                    event.preventDefault();
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                        customClass: {
+                            confirmButton: "btn btn-danger",
+                            cancelButton: "btn btn-light-primary"
+                        }
+                    }).then(function (result) {
+                        if (result.value) {
+                            Swal.fire(
+                                "Deleted!",
+                                "Your file has been deleted.",
+                                "success"
+                            )
+                            form.submit()
+                        }
+                    });
+                });
+            });
+        </script>
     @endpush
 
 </x-dashboard.layout>

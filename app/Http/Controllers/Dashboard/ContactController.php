@@ -16,4 +16,9 @@ class ContactController extends Controller
     public function show(Contact $contact){
         return view('dashboard.contacts.show', compact('contact'));
     }
+
+    public function  destroy(Contact $contact){
+        $contact->delete();
+        return redirect('admin/contacts')->with('message','contact deleted');
+    }
 }

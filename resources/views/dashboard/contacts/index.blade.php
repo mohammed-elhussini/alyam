@@ -16,7 +16,13 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">الرسائل</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">
+                    الرسائل
+                    <span class="label label-xl label-rounded label-success"> {{ \App\Models\Contact::count()}}</span>
+                    <span class="label label-xl font-weight-bold label-rounded label-success"> {{$contacts->total()}}</span>
+                    <span class="label label-xl font-weight-bolder label-rounded label-success">  {{$contacts->count()}}</span>
+                    <span class="label label-xl font-weight-boldest label-rounded label-success"> {{count($contacts)}}</span>
+                    </h5>
                 <!--end::Page Title-->
             </div>
             <!--end::Info-->
@@ -29,6 +35,7 @@
 
         <!--begin::Row-->
         <div class="row">
+
             @foreach($contacts as $contact)
             <!--begin::Col-->
             <div class="col-xl-4">

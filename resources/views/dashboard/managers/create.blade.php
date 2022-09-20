@@ -75,7 +75,6 @@
                                                    name="avatar"
                                                    value="{{old('avatar')}}"
                                                    accept=".png, .jpg, .jpeg"/>
-
                                         </label>
 
                                         <span
@@ -234,6 +233,7 @@
     @push('scripts')
 
         <script>
+            jQuery(document).ready(function () {
             var avatar = new KTImageInput('kt_image');
 
             avatar.on('cancel', function (imageInput) {
@@ -264,6 +264,7 @@
                     confirmButtonText: 'Got it!',
                     confirmButtonClass: 'btn btn-primary font-weight-bold'
                 });
+            });
             });
         </script>
 

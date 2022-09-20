@@ -76,9 +76,9 @@
                         <tr>
                             <td>{{$manager->id}}</td>
                             <td>
-                                <div class="symbol symbol-70">
-                                    <img class=""
-                                         src="{{$manager->avatar ? asset('storage/'.$manager->avatar) : asset('dashboard/assets/media/users/blank.png') }}">
+                                <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                    <img
+                                        src="{{$manager->avatar ? asset('storage/'.$manager->avatar) : asset('dashboard/assets/media/users/blank.png') }}">
                                 </div>
                             </td>
                             <td>{{$manager->username}}</td>
@@ -107,8 +107,8 @@
                                     @csrf
                                     @method('delete')
                                     <button type="submit"
-                                            id="kt_sweetalert_demo_9"
-                                            class="btn btn-sm btn-clean btn-icon"
+                                            id="kt_sweetalert"
+                                            class="btn btn-sm btn-clean btn-icon kt_sweetalert"
                                             title="Delete">
                                 <span class="svg-icon svg-icon-md">
                                     <i class="icon-xl la la-trash-alt"></i>
@@ -130,10 +130,12 @@
 
     @push('scripts')
         <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+        <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/scrollable.js')}}"></script>
         <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>
 
         <script>
             jQuery(document).ready(function () {
+                //
                 $('#kt_datatable').DataTable({
                     pagingType: 'full_numbers',
                     scrollY: 500,
@@ -147,9 +149,8 @@
                         url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json',
                     },
                 });
-
-
-                $("#kt_sweetalert_demo_9").click(function (e) {
+                //
+                $(".kt_sweetalert").click(function (e) {
                     var form = $(this).closest("form");
                     var name = $(this).data("name");
                     event.preventDefault();
@@ -174,8 +175,6 @@
                         }
                     });
                 });
-
-
             });
         </script>
     @endpush

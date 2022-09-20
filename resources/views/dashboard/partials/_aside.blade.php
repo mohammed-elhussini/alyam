@@ -276,7 +276,7 @@
                         <ul class="menu-subnav">
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="{{route('users')}}" class="menu-link">
+                                <a href="{{route('users.index')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -285,7 +285,7 @@
                             </li>
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="{{route('new-user')}}"
+                                <a href="{{route('users.create')}}"
                                    class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>

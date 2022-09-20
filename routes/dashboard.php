@@ -2,9 +2,11 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\dashboardAuthController;
 use App\Http\Controllers\Dashboard\ManagerController;
 use \App\Http\Controllers\Dashboard\ContactController;
-use App\Http\Controllers\Dashboard\dashboardAuthController;
+use \App\Http\Controllers\Dashboard\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'dashboardAuth'], function()
     Route::resource('managers', ManagerController::class);
 
     Route::resource('contacts', ContactController::class)->only(['index', 'show','destroy']);
+    Route::resource('users', UserController::class);
 
 //
     Route::get('/cars', function () {
@@ -94,14 +97,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'dashboardAuth'], function()
         return view('dashboard.pages.create');
     })->name('new-page');
 
-//
-    Route::get('/users', function () {
-        return view('dashboard.users.index');
-    })->name('users');
-
-    Route::get('/users/create', function () {
-        return view('dashboard.users.create');
-    })->name('new-user');
 //
     Route::get('/orders', function () {
         return view('dashboard.orders.index');
