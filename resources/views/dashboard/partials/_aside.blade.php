@@ -242,7 +242,7 @@
                         <ul class="menu-subnav">
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="{{route('pages')}}" class="menu-link">
+                                <a href="{{route('pages.index')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
@@ -251,7 +251,7 @@
                             </li>
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="{{route('new-page')}}" class="menu-link">
+                                <a href="{{route('pages.create')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>

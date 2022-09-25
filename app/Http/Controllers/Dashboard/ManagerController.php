@@ -40,7 +40,7 @@ class ManagerController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Manager $manager)
+    public function store(Manager $manager)
     {
         $attributes = request()->validate([
             'username' => 'required|unique:managers,username,' . $manager->id . ',id',
@@ -130,9 +130,9 @@ class ManagerController extends Controller
                 $avatarNewName,
                 'public',
             );
-
+            $attributes['avatar'] = $avatarPath;
         }
-        $attributes['avatar'] = $avatarPath;
+
 
         if (request('password')) {
 //            $attributes['password'] = bcrypt($attributes['password']);

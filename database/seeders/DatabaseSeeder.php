@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ManagersTableSeeder::class);
         $this->call(ContactsTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(PageTableSeeder::class);
     }
 }

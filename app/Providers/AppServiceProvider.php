@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Contact;
 use App\Models\Manager;
+use App\Models\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Manager::unguard();
         Contact::unguard();
+        Page::unguard();
     }
 }

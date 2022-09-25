@@ -6,7 +6,7 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">أضف صفحة</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">تعديل صفحة {{ $page->title }}</h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
@@ -24,11 +24,7 @@
     </div>
     <!--end::Subheader-->
     <x-dashboard.wrap>
-        <!--begin::Row-->
-        <div class="row">
 
-            <div class="col-lg-12">
-                <!--begin::Advance Table Widget 3-->
                 <div class="card">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -39,10 +35,12 @@
                             </ul>
                         </div>
                     @endif
+
                     <form method="post"
-                          action="{{route('pages.store')}}"
+                          action="{{route('pages.update',$page->id)}}"
                           enctype="multipart/form-data">
                         @csrf
+                        @method('put')
                         <!--begin::Body-->
                         <div class="card-body">
                             <div class="form-group w-100">
@@ -50,7 +48,7 @@
                                 <input type="text"
                                        class="form-control form-control-solid @error('title') is-invalid @enderror"
                                        name="title"
-                                       value="{{old('title')}}"
+                                       value="{{ $page->title }}"
                                        placeholder="إسم الصفحة">
                                 @error('title')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
@@ -61,7 +59,7 @@
                                 <input type="text"
                                        class="form-control form-control-solid @error('slug') is-invalid @enderror"
                                        name="slug"
-                                       value="{{old('slug')}}"
+                                       value="{{ $page->slug }}"
                                        placeholder="إسم اللطيف">
                                 @error('slug')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
@@ -69,7 +67,7 @@
                             </div>
                             <div class="form-group w-100">
                                 <label class="card-label font-weight-bolder text-dark">الوصف المختصر</label>
-                                <textarea class="form-control @error('except') is-invalid @enderror" name="except">{{old('except')}}</textarea>
+                                <textarea class="form-control @error('except') is-invalid @enderror" name="except">{{ $page->except }}</textarea>
                                 @error('except')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
                                 @enderror
@@ -78,44 +76,44 @@
                                 <label class="card-label font-weight-bolder text-dark">الوصف</label>
                                 <textarea name="body"
                                           class=" @error('body') is-invalid @enderror"
-                                          id="kt-ckeditor">{{old('body')}}</textarea>
+                                          id="kt-ckeditor">{{ $page->body }}</textarea>
                                 @error('body')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group w-100">
                                 <label class="card-label font-weight-bolder text-dark d-block">الصورة البارزه</label>
-                                <div class="image-input image-input-empty image-input-outline"
-                                     id="kt_image_5"
-                                     style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
-                                    <div class="image-input-wrapper"
-                                         style="background-image: url('{{asset('dashboard/assets/media/users/blank.png') }}')"></div>
+                            <div class="image-input image-input-empty image-input-outline"
+                                 id="kt_image_5"
+                                 style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
+                                <div class="image-input-wrapper"
+                                     style="background-image: url('{{$page->avatar ? asset('storage/'.$page->avatar) : asset('dashboard/assets/media/users/blank.png') }}')"></div>
 
-                                    <label
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="change"
-                                        data-toggle="tooltip"
-                                        title=""
-                                        data-original-title="Change avatar">
-                                        <i class="fa fa-pen icon-sm text-muted"></i>
-                                        <input type="file"
-                                               name="thumbnail"
-                                               accept=".png, .jpg, .jpeg"/>
+                                <label
+                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                    data-action="change"
+                                    data-toggle="tooltip"
+                                    title=""
+                                    data-original-title="Change avatar">
+                                    <i class="fa fa-pen icon-sm text-muted"></i>
+                                    <input type="file"
+                                           name="thumbnail"
+                                           accept=".png, .jpg, .jpeg"/>
 
-                                    </label>
+                                </label>
 
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="cancel"
-                                        data-toggle="tooltip"
-                                        title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                                <span
+                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                    data-action="cancel"
+                                    data-toggle="tooltip"
+                                    title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
 
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="remove"
-                                        data-toggle="tooltip"
-                                        title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
-                                </div>
+                                <span
+                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                    data-action="remove"
+                                    data-toggle="tooltip"
+                                    title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                            </div>
                             </div>
                         </div>
                         <!--end::Body-->
@@ -127,11 +125,8 @@
                         </div>
                     </form>
                 </div>
-                <!--end::Advance Table Widget 3-->
-            </div>
 
-        </div>
-        <!--end::Row-->
+
     </x-dashboard.wrap>
 
 
