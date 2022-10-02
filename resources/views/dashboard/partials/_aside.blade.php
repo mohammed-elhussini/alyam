@@ -169,7 +169,7 @@
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="{{route('taxes')}}" class="menu-link">
+                                            <a href="{{route('taxes.index')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -177,7 +177,7 @@
                                             </a>
                                         </li>
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="{{route('new-tax')}}" class="menu-link">
+                                            <a href="{{route('taxes.create')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -206,7 +206,7 @@
                         <ul class="menu-subnav">
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="{{route('branches')}}"
+                                <a href="{{route('branches.index')}}"
                                    class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
@@ -216,7 +216,7 @@
                             </li>
                             <li class="menu-item"
                                 aria-haspopup="true">
-                                <a href="{{route('new-branches')}}"
+                                <a href="{{route('branches.create')}}"
                                    class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
@@ -233,7 +233,7 @@
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
                        class="menu-link menu-toggle">
-                        <span class="svg-icon menu-icon"><i class=" flaticon-list"></i></span>
+                        <span class="svg-icon menu-icon"><i class="flaticon-list"></i></span>
                         <span class="menu-text">الصفحات</span>
                         <i class="menu-arrow"></i>
                     </a>

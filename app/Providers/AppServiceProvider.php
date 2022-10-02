@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Branch;
 use App\Models\Contact;
 use App\Models\Manager;
 use App\Models\Page;
@@ -31,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
         Manager::unguard();
         Contact::unguard();
         Page::unguard();
+        Branch::unguard();
     }
 }

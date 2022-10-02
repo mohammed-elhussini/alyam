@@ -6,7 +6,7 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">أضف ضريبة</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5"> تعديل ضريبة -{{ $tax->name }}  </h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
@@ -14,6 +14,7 @@
                     <li class="breadcrumb-item">
                         <a href="{{route('taxes.index')}}" class="text-muted">الضرائب</a>
                     </li>
+
                 </ul>
                 <!--end::Actions-->
             </div>
@@ -38,10 +39,9 @@
                             </ul>
                         </div>
                     @endif
-
-                    <form method="post"
-                          action="{{route('taxes.store')}}">
+                    <form method="post" action="{{route('taxes.update',$tax->id)}}">
                         @csrf
+                        @method('put')
                         <!--begin::Body-->
                         <div class="card-body">
                             <div class="form-group w-100">
@@ -49,7 +49,7 @@
                                 <input type="text"
                                        class="form-control form-control-solid @error('name') is-invalid @enderror"
                                        name="name"
-                                       value="{{old('name')}}"
+                                       value="{{$tax->name}}"
                                        placeholder="إسم ضريبة">
                                 @error('name')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
@@ -58,9 +58,9 @@
                             <div class="form-group w-100">
                                 <label class="card-label font-size-lg font-weight-bolder text-dark">مبلغ الضريبة</label>
                                 <input type="text"
-                                       class="form-control @error('value') is-invalid @enderror"
                                        name="value"
-                                       value="{{old('value')}}"
+                                       value="{{$tax->value}}"
+                                       class="form-control @error('name') is-invalid @enderror"
                                        placeholder="المبلغ">
                                 @error('value')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
@@ -68,27 +68,29 @@
                             </div>
 
                             <div class="form-group w-100">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">نوع الضريبة</label>
+                                <label class="card-label font-size-lg font-weight-bolder text-dark">
+                                    نوع الضريبة
+                                </label>
                                 <div class="radio-inline">
                                     <label class="radio radio-rounded">
                                         <input type="radio"
-                                               checked="checked"
+                                               class=" @error('type') is-invalid @enderror"
+                                               {{$tax->type == 0 ? 'checked="checked"' : ''}}
                                                value="0"
-                                               class="@error('value') is-invalid @enderror"
                                                name="type"/>
                                         <span></span>
                                         مبلغ ثابت
                                     </label>
                                     <label class="radio radio-rounded">
                                         <input type="radio"
+                                               {{$tax->type == 1 ? 'checked="checked"' : ''}}
                                                value="1"
-                                               class="@error('value') is-invalid @enderror"
                                                name="type"/>
                                         <span></span>
                                         نسبة مئوية
                                     </label>
                                     @error('type')
-                                    <div class="form-text invalid-feedback">{{$message}}</div>
+                                    <div class="form-text">{{$message}}</div>
                                     @enderror
                                 </div>
 

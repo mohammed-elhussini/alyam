@@ -60,7 +60,7 @@
                                    type="text"
                                    placeholder="Email"
                                    name="email"
-                                   autocomplete="off" />
+                                   autocomplete="on" />
                             @error('email')
                             <div class="form-text invalid-feedback">{{$message}}</div>
                             @enderror

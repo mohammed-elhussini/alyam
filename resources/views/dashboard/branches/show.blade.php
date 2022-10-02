@@ -8,14 +8,14 @@
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
                 <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">
-                    {{ $page->title }}
+                    {{ $branch->name }}
                 </h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{route('pages.index')}}" class="text-muted">الصفحات</a>
+                        <a href="{{route('branches.index')}}" class="text-muted">الفروع</a>
                     </li>
 
                 </ul>
@@ -33,16 +33,14 @@
             <div class="card-header">
                 <div class="card-title">
                     <h3 class="card-label">
-                        {{ $page->title }}
+                        {{ $branch->name }}
                     </h3>
-                   <a href="{{ $page->slug }}">
-                       معاينة الصفحة ف الموقع
-                   </a>
+
                 </div>
                 <div class="card-toolbar">
                     <form class="d-inline-flex"
                            method="post"
-                           action="{{route('pages.destroy',$page->id)}}">
+                           action="{{route('branches.destroy',$branch->id)}}">
                         @csrf
                         @method('delete')
                         <button type="submit"
@@ -51,30 +49,38 @@
                         </button>
                     </form>
 
-                    <a href="{{route('pages.edit',$page->id)}}"
+                    <a href="{{route('branches.edit',$branch->id)}}"
                        class="btn btn-sm btn-icon btn-light-primary">
                         <i class="icon-xl la la-pencil-alt"></i>
                     </a>
                 </div>
             </div>
             <div class="card-body">
-                @if($page->thumbnail)
-                <div class="text-center">
-                    <img class="img-fluid"
-                         src="{{asset('storage/'.$page->thumbnail)}}">
-                </div>
-                @endif
-                    <div class="d-flex align-items-center bg-light-info rounded p-5 mb-3">
-                        {{ $page->except }}
-                    </div>
-                {!!  $page->body !!}
+
+
+               <p> <a href="mailto: {{ $branch->email }}"
+                   class="text-dark-50 text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
+                    <i class="flaticon2-new-email ml-2 font-size-lg"></i>
+                    {{ $branch->email }}
+                </a></p>
+
+                <p><a href="tel:{{ $branch->phone }}"
+                   class="text-dark-50 text-hover-primary font-weight-bold">
+                    <i class="flaticon2-phone ml-2 font-size-lg"></i>
+                   {{ $branch->phone }}
+                </a></p>
+                <p>
+                    {{ $branch->address }}
+                </p>
             </div>
         </div>
         <!--end::Card-->
     </x-dashboard.wrap>
 
     @push('scripts')
+
         <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>
+
         <script>
             jQuery(document).ready(function () {
                 //

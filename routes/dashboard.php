@@ -7,7 +7,8 @@ use App\Http\Controllers\Dashboard\ManagerController;
 use \App\Http\Controllers\Dashboard\ContactController;
 use \App\Http\Controllers\Dashboard\UserController;
 use \App\Http\Controllers\Dashboard\PageController;
-
+use \App\Http\Controllers\Dashboard\BranchController;
+use \App\Http\Controllers\Dashboard\TaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,19 +32,18 @@ Route::middleware('dashboardAuthLogin')->group(function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function () {
 
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-
+    Route::get('/', function () { return view('dashboard.index'); })->name('dashboard');
     //
     Route::get('/logout', [dashboardAuthController::class, 'logout'])->name('logout');
-//
-
+    //
     Route::resource('managers', ManagerController::class);
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
     Route::resource('users', UserController::class);
     Route::resource('pages', PageController::class);
-//
+    Route::resource('branches', BranchController::class);
+    Route::resource('taxes',TaxController::class);
+
+    //
     Route::get('/cars', function () {
         return view('dashboard.cars.index');
     })->name('cars');
@@ -60,24 +60,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function ()
     Route::get('/brands/create', function () {
         return view('dashboard.brands.create');
     })->name('new-brand');
-
-//
-    Route::get('/taxes', function () {
-        return view('dashboard.taxes.index');
-    })->name('taxes');
-
-    Route::get('/taxes/create', function () {
-        return view('dashboard.taxes.create');
-    })->name('new-tax');
-
-//
-    Route::get('/branches', function () {
-        return view('dashboard.branches.index');
-    })->name('branches');
-
-    Route::get('/branches/create', function () {
-        return view('dashboard.branches.create');
-    })->name('new-branches');
 
 //
     Route::get('/orders', function () {
