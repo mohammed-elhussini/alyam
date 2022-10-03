@@ -132,7 +132,7 @@
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="{{route('brands')}}"
+                                            <a href="{{route('brands.index')}}"
                                                class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
@@ -142,7 +142,7 @@
                                         </li>
                                         <li class="menu-item"
                                             aria-haspopup="true">
-                                            <a href="{{route('new-brand')}}"
+                                            <a href="{{route('brands.create')}}"
                                                class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>

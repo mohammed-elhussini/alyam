@@ -8,14 +8,14 @@
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
                 <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">
-                    {{ $page->title }}
+                    {{ $brand->title }}
                 </h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{route('pages.index')}}" class="text-muted">الصفحات</a>
+                        <a href="{{route('brands.index')}}" class="text-muted">الماركات</a>
                     </li>
 
                 </ul>
@@ -30,19 +30,16 @@
     <x-dashboard.wrap>
         <!--begin::Card-->
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <div class="card-title">
                     <h3 class="card-label">
-                        {{ $page->title }}
+                        {{ $brand->title }}
                     </h3>
-                   <a href="{{ $page->slug }}">
-                       معاينة الصفحة ف الموقع
-                   </a>
                 </div>
-                <div class="card-toolbar">
+                <div class="card-toolbar d-flex">
                     <form class="d-inline-flex"
-                           method="post"
-                           action="{{route('pages.destroy',$page->id)}}">
+                          method="post"
+                          action="{{route('brands.destroy',$brand->id)}}">
                         @csrf
                         @method('delete')
                         <button type="submit"
@@ -50,35 +47,35 @@
                             <i class="icon-xl la la-trash-alt"></i>
                         </button>
                     </form>
-
-                    <a href="{{route('pages.edit',$page->id)}}"
+                    <a href="{{route('brands.edit',$brand->id)}}"
                        class="btn btn-sm btn-icon btn-light-primary">
                         <i class="icon-xl la la-pencil-alt"></i>
                     </a>
                 </div>
             </div>
             <div class="card-body">
-                @if($page->thumbnail)
-                <div class="text-center">
-                    <img class="img-fluid"
-                         src="{{asset('storage/'.$page->thumbnail)}}">
-                </div>
-                @endif
-                    <div class="d-flex align-items-center bg-light-info rounded p-5 mb-3">
-                        {{ $page->except }}
+                @if($brand->thumbnail)
+                    <div class="text-center">
+                        <img class="img-fluid"
+                             src="{{asset('storage/'.$brand->thumbnail)}}">
                     </div>
-                {!!  $page->body !!}
+                @endif
+                <div class="d-flex align-items-center bg-light-info rounded p-5 mb-3">
+                    {!!  $brand->description !!}
+                </div>
             </div>
         </div>
         <!--end::Card-->
     </x-dashboard.wrap>
 
     @push('scripts')
+
         <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>
+
         <script>
             jQuery(document).ready(function () {
                 //
-                jQuery(".kt_sweetalert").on('click',function (e) {
+                jQuery(".kt_sweetalert").on('click', function (e) {
                     var form = $(this).closest("form");
                     var name = $(this).data("name");
                     event.preventDefault();

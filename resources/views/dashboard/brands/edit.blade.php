@@ -6,15 +6,14 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">تعديل صفحة {{ $page->title }}</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">تعديل ماركة - {{$brand->title}}</h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{route('pages.index')}}" class="text-muted">الصفحات</a>
+                        <a href="{{route('brands.index')}}" class="text-muted">الماركات</a>
                     </li>
-
                 </ul>
                 <!--end::Actions-->
             </div>
@@ -24,100 +23,80 @@
     </div>
     <!--end::Subheader-->
     <x-dashboard.wrap>
+        <!--begin::Row-->
+        <div class="row">
 
+            <div class="col-lg-12">
+                <!--begin::Advance Table Widget 3-->
                 <div class="card">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <form method="post"
-                          action="{{route('pages.update',$page->id)}}"
+                          action="{{route('brands.update',$brand->id)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('put')
+
                         <!--begin::Body-->
                         <div class="card-body">
                             <div class="form-group w-100">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">اسم الصفحة</label>
+                                <label class="card-label font-size-lg font-weight-bolder text-dark">الماركة</label>
                                 <input type="text"
                                        class="form-control form-control-solid @error('title') is-invalid @enderror"
                                        name="title"
-                                       value="{{ $page->title }}"
-                                       placeholder="إسم الصفحة">
+                                       value="{{$brand->title}}"
+                                       placeholder="إسم الماركة">
                                 @error('title')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group w-100">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">اسم اللطيف</label>
-                                <input type="text"
-                                       class="form-control form-control-solid @error('slug') is-invalid @enderror"
-                                       name="slug"
-                                       value="{{ $page->slug }}"
-                                       placeholder="إسم اللطيف">
-                                @error('slug')
+                                <label class="card-label font-weight-bolder text-dark">الوصف </label>
+                                <textarea id="kt-ckeditor" class="form-control @error('description') is-invalid @enderror"
+                                          name="description">{{ $brand->description }}</textarea>
+                                @error('description')
                                 <div class="form-text invalid-feedback">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-weight-bolder text-dark">الوصف المختصر</label>
-                                <textarea class="form-control @error('except') is-invalid @enderror" name="except">{{ $page->except }}</textarea>
-                                @error('except')
-                                <div class="form-text invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-weight-bolder text-dark">الوصف</label>
-                                <textarea name="body"
-                                          class=" @error('body') is-invalid @enderror"
-                                          id="kt-ckeditor">{{ $page->body }}</textarea>
-                                @error('body')
-                                <div class="form-text invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
+
 
                             <div class="form-group w-100">
                                 <label class="card-label font-weight-bolder text-dark d-block">الصورة البارزه</label>
-                            <div class="image-input image-input-empty image-input-outline"
-                                 id="kt_image_5"
-                                 style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
-                                <div class="image-input-wrapper"
-                                     style="background-image: url('{{$page->thumbnail ? asset('storage/'.$page->thumbnail) : asset('dashboard/assets/media/users/blank.png') }}')"></div>
+                                <div class="image-input image-input-empty image-input-outline"
+                                     id="kt_image_5"
+                                     style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
+                                    <div class="image-input-wrapper"
+                                         style="background-image: url('{{$brand->image ? asset('storage/'.$brand->image) : asset('dashboard/assets/media/users/blank.png') }}')"></div>
 
-                                <label
-                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="change"
-                                    data-toggle="tooltip"
-                                    title=""
-                                    data-original-title="Change avatar">
-                                    <i class="fa fa-pen icon-sm text-muted"></i>
-                                    <input type="file"
-                                           name="thumbnail"
-                                           accept=".png, .jpg, .jpeg"/>
+                                    <label
+                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                        data-action="change"
+                                        data-toggle="tooltip"
+                                        title=""
+                                        data-original-title="Change avatar">
+                                        <i class="fa fa-pen icon-sm text-muted"></i>
+                                        <input type="file"
+                                               name="image"
+                                               accept=".png, .jpg, .jpeg"/>
 
-                                </label>
+                                    </label>
 
-                                <span
-                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="cancel"
-                                    data-toggle="tooltip"
-                                    title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                                    <span
+                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                        data-action="cancel"
+                                        data-toggle="tooltip"
+                                        title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
 
-                                <span
-                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="remove"
-                                    data-toggle="tooltip"
-                                    title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                                    <span
+                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                        data-action="remove"
+                                        data-toggle="tooltip"
+                                        title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                                </div>
                             </div>
-                            </div>
+
                         </div>
+
                         <!--end::Body-->
+
                         <div class="card-footer bg-gray-100">
                             <button type="submit"
                                     class="btn btn-primary btn-block font-weight-bolder">
@@ -126,15 +105,17 @@
                         </div>
                     </form>
                 </div>
+                <!--end::Advance Table Widget 3-->
+            </div>
 
-
+        </div>
+        <!--end::Row-->
     </x-dashboard.wrap>
 
 
     @push('scripts')
 
         <script src="{{asset('dashboard/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
-{{--        <script src="{{asset('dashboard/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>--}}
 
         <script>
             // Class definition

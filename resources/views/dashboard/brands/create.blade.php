@@ -12,10 +12,7 @@
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="" class="text-muted">General</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="" class="text-muted">Empty Page</a>
+                        <a href="{{route('brands.index')}}" class="text-muted">الماركات</a>
                     </li>
                 </ul>
                 <!--end::Actions-->
@@ -26,115 +23,110 @@
     </div>
     <!--end::Subheader-->
     <x-dashboard.wrap>
-        <!--begin::Row-->
-        <div class="row">
 
-            <div class="col-lg-12">
-                <!--begin::Advance Table Widget 3-->
-                <div class="card">
-                    <form>
-
-
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <div class="form-group w-100">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">الماركة</label>
-                                <input type="text" class="form-control form-control-solid" placeholder="إسم الماركة">
-                            </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-weight-bolder text-dark">الوصف</label>
-                                <div id="kt-ckeditor-1-toolbar"></div>
-                                <div id="kt-ckeditor-1" class="form-control"></div>
-                            </div>
-
-
-                            <div class="form-group w-100">
-
-
-                                <label
-                                    class="d-block card-label font-size-lg font-weight-bolder text-dark">الصورة</label>
-                                <div class="image-input image-input-empty image-input-outline mb-3"
-                                     id="kt_image_5"
-                                     style="background-image: url({{asset('/dashboard/assets/media/users/blank.png')}})">
-                                    <div class="image-input-wrapper"></div>
-
-                                    <label
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="change"
-                                        data-toggle="tooltip"
-                                        title=""
-                                        data-original-title="Change avatar">
-                                        <i class="fa fa-pen icon-sm text-muted"></i>
-                                        <input type="file"
-                                               name="profile_avatar"
-                                               accept=".png, .jpg, .jpeg"/>
-                                        <input type="hidden"
-                                               name="profile_avatar_remove"/>
-                                    </label>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="cancel"
-                                        data-toggle="tooltip"
-                                        title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="remove"
-                                        data-toggle="tooltip"
-                                        title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                        <!--end::Body-->
-
-                        <div class="card-footer bg-gray-100">
-                            <button type="submit"
-                                    class="btn btn-primary btn-block font-weight-bolder">
-                                حفظ
-                            </button>
-                        </div>
-                    </form>
+        <div class="card">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <!--end::Advance Table Widget 3-->
-            </div>
+            @endif
+            <form method="post"
+                  action="{{route('brands.store')}}"
+            enctype="multipart/form-data">
+                @csrf
 
+                <!--begin::Body-->
+                <div class="card-body">
+                    <div class="form-group w-100">
+                        <label class="card-label font-size-lg font-weight-bolder text-dark">الماركة</label>
+                        <input type="text"
+                               class="form-control form-control-solid @error('title') is-invalid @enderror"
+                               name="title"
+                               placeholder="إسم الماركة">
+                        @error('title')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group w-100">
+                        <label class="card-label font-weight-bolder text-dark">الوصف </label>
+                        <textarea id="kt-ckeditor"
+                                  class="form-control @error('description') is-invalid @enderror"
+                                  name="description"></textarea>
+                        @error('description')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group w-100">
+                        <label class="card-label font-weight-bolder text-dark d-block">الصورة البارزه</label>
+                        <div class="image-input image-input-empty image-input-outline"
+                             id="kt_image_5"
+                             style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
+                            <div class="image-input-wrapper"
+                                 style="background-image: url('{{asset('dashboard/assets/media/users/blank.png') }}')"></div>
+
+                            <label
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="change"
+                                data-toggle="tooltip"
+                                title=""
+                                data-original-title="Change avatar">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file"
+                                       name="image"
+                                       accept=".png, .jpg, .jpeg"/>
+
+                            </label>
+
+                            <span
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="cancel"
+                                data-toggle="tooltip"
+                                title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+
+                            <span
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="remove"
+                                data-toggle="tooltip"
+                                title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--end::Body-->
+
+                <div class="card-footer bg-gray-100">
+                    <button type="submit"
+                            class="btn btn-primary btn-block font-weight-bolder">
+                        حفظ
+                    </button>
+                </div>
+            </form>
         </div>
-        <!--end::Row-->
+        <!--end::Advance Table Widget 3-->
+
     </x-dashboard.wrap>
 
 
     @push('scripts')
 
-        <!--begin::Page Vendors(used by this page)-->
-
-
-
-        <script src="{{asset('dashboard/assets/plugins/custom/ckeditor/ckeditor-document.bundle.js')}}"></script>
-        <script src="{{asset('dashboard/assets/js/pages/crud/forms/editors/ckeditor-document.js')}}"></script>
-
-
-
-
-        <!--end::Page Scripts-->
-
+        <script src="{{asset('dashboard/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
 
         <script>
-
-            // Class definition ckeditor
-            var KTCkeditorDocument = function () {
+            // Class definition
+            var KTCkeditor = function () {
                 // Private functions
                 var demos = function () {
-                    DecoupledEditor
-                        .create(document.querySelector('#kt-ckeditor-1'))
+                    ClassicEditor
+                        .create(document.querySelector('#kt-ckeditor'))
                         .then(editor => {
-                            const toolbarContainer = document.querySelector('#kt-ckeditor-1-toolbar');
-
-                            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+                            console.log(editor);
                         })
                         .catch(error => {
                             console.error(error);
@@ -150,9 +142,8 @@
             }();
             // Initialization
             jQuery(document).ready(function () {
-                KTCkeditorDocument.init();
+                KTCkeditor.init();
             });
-
 
             // Image
             var avatar5 = new KTImageInput('kt_image_5');
@@ -188,6 +179,7 @@
             });
 
         </script>
+
     @endpush
 
 </x-dashboard.layout>

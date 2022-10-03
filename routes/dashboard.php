@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\dashboardAuthController;
 use App\Http\Controllers\Dashboard\ManagerController;
@@ -9,6 +8,8 @@ use \App\Http\Controllers\Dashboard\UserController;
 use \App\Http\Controllers\Dashboard\PageController;
 use \App\Http\Controllers\Dashboard\BranchController;
 use \App\Http\Controllers\Dashboard\TaxController;
+use \App\Http\Controllers\Dashboard\BrandController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +33,9 @@ Route::middleware('dashboardAuthLogin')->group(function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function () {
 
-    Route::get('/', function () { return view('dashboard.index'); })->name('dashboard');
+    Route::get('/', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
     //
     Route::get('/logout', [dashboardAuthController::class, 'logout'])->name('logout');
     //
@@ -41,7 +44,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function ()
     Route::resource('users', UserController::class);
     Route::resource('pages', PageController::class);
     Route::resource('branches', BranchController::class);
-    Route::resource('taxes',TaxController::class);
+    Route::resource('taxes', TaxController::class);
+    Route::resource('brands', BrandController::class);
 
     //
     Route::get('/cars', function () {
@@ -53,15 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function ()
     })->name('new-car');
 
 //
-    Route::get('/brands', function () {
-        return view('dashboard.brands.index');
-    })->name('brands');
 
-    Route::get('/brands/create', function () {
-        return view('dashboard.brands.create');
-    })->name('new-brand');
-
-//
     Route::get('/orders', function () {
         return view('dashboard.orders.index');
     })->name('orders');
