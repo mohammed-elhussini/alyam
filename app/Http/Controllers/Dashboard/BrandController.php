@@ -39,7 +39,7 @@ class BrandController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required|unique:brands,title,' . $brand->id . ',id',
-            //'description' => 'nullable',
+            'description' => 'nullable',
 
         ]);
         $avatarPath = null;

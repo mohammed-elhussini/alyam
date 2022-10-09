@@ -85,20 +85,19 @@
                                             data-action="cancel"
                                             data-toggle="tooltip"
                                             title="Cancel avatar">
-  <i class="ki ki-bold-close icon-xs text-muted"></i>
- </span>
+                                          <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                        </span>
 
                                         <span
                                             class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
                                             data-action="remove"
                                             data-toggle="tooltip"
                                             title="Remove avatar">
-  <i class="ki ki-bold-close icon-xs text-muted"></i>
- </span>
+                                          <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                        </span>
                                     </div>
                                     @error('avatar')
                                     <div class="form-text invalid-feedback">{{$message}}</div>
-                                    {{old('avatar')}}
                                     @enderror
                                 </div>
                             </div>
@@ -278,9 +277,9 @@
                                 <div class="col-9">
                                     <div class="input-group input-group-lg input-group-solid">
                                         <div class="input-group-prepend">
-																			<span class="input-group-text">
-																				<i class="la la-at"></i>
-																			</span>
+                                            <span class="input-group-text">
+                                                <i class="la la-at"></i>
+                                            </span>
                                         </div>
                                         <input type="email"
                                                class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror"

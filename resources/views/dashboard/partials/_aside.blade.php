@@ -97,7 +97,7 @@
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
                                         <li class="menu-item" aria-haspopup="true">
-                                            <a href="{{route('cars')}}" class="menu-link">
+                                            <a href="{{route('cars.index')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -106,7 +106,7 @@
                                         </li>
                                         <li class="menu-item menu-item-active-n"
                                             aria-haspopup="true">
-                                            <a href="{{route('new-car')}}" class="menu-link">
+                                            <a href="{{route('cars.create')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>

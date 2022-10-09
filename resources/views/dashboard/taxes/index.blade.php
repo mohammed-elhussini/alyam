@@ -45,7 +45,7 @@
                     <tbody>
                     @foreach($taxes as $tax)
                         <tr>
-                            <td>1</td>
+                            <td>{{$tax->id}}</td>
                             <td>{{$tax->name}}</td>
                             <td>{{$tax->value}}</td>
                             <td>{{$tax->type ? 'نسبة مئوية' : 'مبلغ ثابت'}}</td>

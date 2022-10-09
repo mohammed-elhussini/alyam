@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Tax;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -15,7 +17,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        $cars = Car::latest()->get();
+        return view('dashboard.cars.index',compact('cars'));
     }
 
     /**
@@ -25,7 +28,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        $brabds = Brand::all();
+        $taxes = Tax::all();
+        return view('dashboard.cars.create',compact('brabds','taxes'));
     }
 
     /**
@@ -47,7 +52,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        //
+        return view('dashboard.cars.show',compact('car'));
     }
 
     /**

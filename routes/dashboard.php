@@ -9,6 +9,7 @@ use \App\Http\Controllers\Dashboard\PageController;
 use \App\Http\Controllers\Dashboard\BranchController;
 use \App\Http\Controllers\Dashboard\TaxController;
 use \App\Http\Controllers\Dashboard\BrandController;
+use \App\Http\Controllers\Dashboard\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,15 +47,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function ()
     Route::resource('branches', BranchController::class);
     Route::resource('taxes', TaxController::class);
     Route::resource('brands', BrandController::class);
+    Route::resource('cars', CarController::class);
 
-    //
-    Route::get('/cars', function () {
-        return view('dashboard.cars.index');
-    })->name('cars');
-
-    Route::get('/cars/create', function () {
-        return view('dashboard.cars.create');
-    })->name('new-car');
 
 //
 

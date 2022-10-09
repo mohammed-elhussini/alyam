@@ -24,121 +24,114 @@
     </div>
     <!--end::Subheader-->
     <x-dashboard.wrap>
-        <!--begin::Row-->
-        <div class="row">
 
-            <div class="col-lg-12">
-                <!--begin::Advance Table Widget 3-->
-                <div class="card">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form method="post"
-                          action="{{route('pages.store')}}"
-                          enctype="multipart/form-data">
-                        @csrf
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <div class="form-group w-100">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">اسم الصفحة</label>
-                                <input type="text"
-                                       class="form-control form-control-solid @error('title') is-invalid @enderror"
-                                       name="title"
-                                       value="{{old('title')}}"
-                                       placeholder="إسم الصفحة">
-                                @error('title')
-                                <div class="form-text invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">اسم اللطيف</label>
-                                <input type="text"
-                                       class="form-control form-control-solid @error('slug') is-invalid @enderror"
-                                       name="slug"
-                                       value="{{old('slug')}}"
-                                       placeholder="إسم اللطيف">
-                                @error('slug')
-                                <div class="form-text invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-weight-bolder text-dark">الوصف المختصر</label>
-                                <textarea class="form-control @error('except') is-invalid @enderror" name="except">{{old('except')}}</textarea>
-                                @error('except')
-                                <div class="form-text invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-weight-bolder text-dark">الوصف</label>
-                                <textarea name="body"
-                                          class=" @error('body') is-invalid @enderror"
-                                          id="kt-ckeditor">{{old('body')}}</textarea>
-                                @error('body')
-                                <div class="form-text invalid-feedback">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-100">
-                                <label class="card-label font-weight-bolder text-dark d-block">الصورة البارزه</label>
-                                <div class="image-input image-input-empty image-input-outline"
-                                     id="kt_image_5"
-                                     style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
-                                    <div class="image-input-wrapper"
-                                         style="background-image: url('{{asset('dashboard/assets/media/users/blank.png') }}')"></div>
-
-                                    <label
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="change"
-                                        data-toggle="tooltip"
-                                        title=""
-                                        data-original-title="Change avatar">
-                                        <i class="fa fa-pen icon-sm text-muted"></i>
-                                        <input type="file"
-                                               name="thumbnail"
-                                               accept=".png, .jpg, .jpeg"/>
-
-                                    </label>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="cancel"
-                                        data-toggle="tooltip"
-                                        title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
-
-                                    <span
-                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                        data-action="remove"
-                                        data-toggle="tooltip"
-                                        title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end::Body-->
-                        <div class="card-footer bg-gray-100">
-                            <button type="submit"
-                                    class="btn btn-primary btn-block font-weight-bolder">
-                                حفظ
-                            </button>
-                        </div>
-                    </form>
+        <div class="card">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <!--end::Advance Table Widget 3-->
-            </div>
+            @endif
+            <form method="post"
+                  action="{{route('pages.store')}}"
+                  enctype="multipart/form-data">
+                @csrf
+                <!--begin::Body-->
+                <div class="card-body">
+                    <div class="form-group w-100">
+                        <label class="card-label font-size-lg font-weight-bolder text-dark">اسم الصفحة</label>
+                        <input type="text"
+                               class="form-control form-control-solid @error('title') is-invalid @enderror"
+                               name="title"
+                               value="{{old('title')}}"
+                               placeholder="إسم الصفحة">
+                        @error('title')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group w-100">
+                        <label class="card-label font-size-lg font-weight-bolder text-dark">اسم اللطيف</label>
+                        <input type="text"
+                               class="form-control form-control-solid @error('slug') is-invalid @enderror"
+                               name="slug"
+                               value="{{old('slug')}}"
+                               placeholder="إسم اللطيف">
+                        @error('slug')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group w-100">
+                        <label class="card-label font-weight-bolder text-dark">الوصف المختصر</label>
+                        <textarea class="form-control @error('except') is-invalid @enderror"
+                                  name="except">{{old('except')}}</textarea>
+                        @error('except')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group w-100">
+                        <label class="card-label font-weight-bolder text-dark">الوصف</label>
+                        <textarea name="body"
+                                  class=" @error('body') is-invalid @enderror"
+                                  id="kt-ckeditor">{{old('body')}}</textarea>
+                        @error('body')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group w-100">
+                        <label class="card-label font-weight-bolder text-dark d-block">الصورة البارزه</label>
+                        <div class="image-input image-input-empty image-input-outline"
+                             id="kt_image_5"
+                             style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
+                            <div class="image-input-wrapper"
+                                 style="background-image: url('{{asset('dashboard/assets/media/users/blank.png') }}')"></div>
 
+                            <label
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="change"
+                                data-toggle="tooltip"
+                                title=""
+                                data-original-title="Change avatar">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file"
+                                       name="thumbnail"
+                                       accept=".png, .jpg, .jpeg"/>
+
+                            </label>
+
+                            <span
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="cancel"
+                                data-toggle="tooltip"
+                                title="Cancel avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+
+                            <span
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="remove"
+                                data-toggle="tooltip"
+                                title="Remove avatar"><i class="ki ki-bold-close icon-xs text-muted"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Body-->
+                <div class="card-footer bg-gray-100">
+                    <button type="submit"
+                            class="btn btn-primary btn-block font-weight-bolder">
+                        حفظ
+                    </button>
+                </div>
+            </form>
         </div>
-        <!--end::Row-->
+
     </x-dashboard.wrap>
 
 
     @push('scripts')
 
         <script src="{{asset('dashboard/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
-{{--        <script src="{{asset('dashboard/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>--}}
+        {{--        <script src="{{asset('dashboard/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>--}}
 
         <script>
             // Class definition
@@ -147,25 +140,25 @@
                 // Private functions
                 var demos = function () {
                     ClassicEditor
-                        .create( document.querySelector( '#kt-ckeditor' ) )
-                        .then( editor => {
-                            console.log( editor );
-                        } )
-                        .catch( error => {
-                            console.error( error );
-                        } );
+                        .create(document.querySelector('#kt-ckeditor'))
+                        .then(editor => {
+                            console.log(editor);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
                 }
 
                 return {
                     // public functions
-                    init: function() {
+                    init: function () {
                         demos();
                     }
                 };
             }();
 
             // Initialization
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
                 KTCkeditor.init();
             });
 
