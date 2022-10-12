@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Branch;
 use App\Models\Brand;
+use App\Models\Car;
 use App\Models\Contact;
 use App\Models\Manager;
 use App\Models\Page;
@@ -35,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         Page::unguard();
         Branch::unguard();
         Brand::unguard();
+        Car::unguard();
     }
 }

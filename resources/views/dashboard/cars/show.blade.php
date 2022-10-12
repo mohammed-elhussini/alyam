@@ -64,21 +64,25 @@
                 </div>
 
                 <div class="row">
+
+                 @foreach($car->pictures as $picture)
                     <div class="col-lg-4">
                         <div class="overlay">
                             <div class="card-body p-0">
                                 <div class="overlay-wrapper">
                                     <img
-                                        src="https://www.hawtcelebs.com/wp-content/uploads/2022/10/amelia-gething-for-folie-october-2022-2.jpg"
-                                        alt="" class="w-100 rounded"/>
+                                        src="{{asset('storage/'.$picture->picture)}}"
+                                        alt="{{$picture->title}}"
+                                        class="w-100 rounded"/>
                                 </div>
                                 <div class="overlay-layer">
-                                    <span class="btn font-weight-bold btn-primary btn-shadow">الاسم</span>
+                                    <span class="btn font-weight-bold btn-primary btn-shadow">{{$picture->title}}</span>
 
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
                 </div>
                 <div class="d-flex align-items-center bg-light-info rounded p-5 mb-3">

@@ -79,6 +79,7 @@
                         <input type="text"
                                class="form-control form-control-solid @error('model') is-invalid @enderror"
                                value="{{old('model')}}"
+                               name="model"
                                placeholder="SKU">
                         @error('model')
                         <div class="form-text invalid-feedback">{{$message}}</div>
@@ -113,10 +114,10 @@
                         <label class="card-label font-weight-bolder text-dark">الماركة</label>
                         <select class="form-control select2 @error('brand_id') is-invalid @enderror"
                                 data-placeholder="ماركة السيارة"
-                                name="brand_id ">
+                                name="brand_id">
                             <option value=""></option>
                             @foreach($brabds as $brabd)
-                            <option value="{{$brabd->id}}">{{$brabd->title}}</option>
+                                <option value="{{$brabd->id}}">{{$brabd->title}}</option>
                             @endforeach
                         </select>
                         @error('brand_id')
@@ -141,10 +142,10 @@
 
                         <select class="form-control select2 @error('tax_id') is-invalid @enderror"
                                 data-placeholder="اختار الضريبة المناسبة"
-                                name="tax_id ">
+                                name="tax_id">
                             <option value=""></option>
                             @foreach($taxes as $tax)
-                            <option value="{{$tax->id}}">{{$tax->name}}</option>
+                                <option value="{{$tax->id}}">{{$tax->name}}</option>
                             @endforeach
                         </select>
                         @error('tax_id')
@@ -169,7 +170,7 @@
                                     data-original-title="Change avatar">
                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                     <input type="file"
-                                           name="avatar"
+                                           name="picture"
                                            value="{{old('picture')}}"
                                            accept=".png, .jpg, .jpeg"/>
                                 </label>
@@ -198,41 +199,28 @@
 
 
                     <div class="form-group w-100">
-                        <div id="kt_repeater_3">
-                            <div class="form-group">
-                                <label class="card-label font-size-lg font-weight-bolder text-dark">الصور</label>
-                                <div data-repeater-list="">
-                                    <div data-repeater-item class="form-group row justify-content-between">
-                                        <div class="col-lg-10">
-                                            <input type="file"
-                                                   name=""
-                                                   accept=".png, .jpg, .jpeg"/>
 
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="اسم وصف الصورة">
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-lg-2">
-                                            <a href="javascript:void(0)"
-                                               data-repeater-delete=""
-                                               class="btn font-weight-bold btn-danger btn-icon">
-                                                <i class="la la-remove"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                        <div class="form-group">
+                            <label for="card-label font-weight-bolder text-dark">الصور</label>
+                            <div class="repeater-list">
+                                <div class="repeater-list-item">
+                                    <input type="file"
+                                           name="photo[]"
+                                           multiple="multiple"
+                                           accept=".png, .jpg, .jpeg"/>
+                                    <input type="text"
+                                           name="title[]"
+                                           class="form-control"
+                                           placeholder="اسم وصف الصورة">
                                 </div>
-                            </div>
-                            <div class="form-group row justify-content-center">
-
-                                <div data-repeater-create=""
-                                     class="btn font-weight-bold btn-primary">
+                                <div class="repeater-create btn font-weight-bold btn-primary">
                                     <i class="la la-plus"></i>
                                     إضافة
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
 
@@ -255,8 +243,8 @@
         {{--        <script src="{{asset('dashboard/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>--}}
 
         <script>
-            // Class definition
 
+            //Class definition
             var KTCkeditor = function () {
                 // Private functions
                 var demos = function () {
@@ -278,56 +266,14 @@
                 };
             }();
 
-            // Initialization
+            //Initialization
             jQuery(document).ready(function () {
                 KTCkeditor.init();
             });
 
-            // Initialization Repeater
-            jQuery(document).ready(function () {
-                KTSelect2.init();
-            });
 
-            // Class definition
-            var KTFormRepeater = function () {
-
-                // Private functions
-                var demo3 = function () {
-                    $('#kt_repeater_3').repeater({
-                        initEmpty: false,
-
-                        defaultValues: {
-                            'text-input': 'foo'
-                        },
-
-                        show: function () {
-                            $(this).slideDown();
-                        },
-
-                        hide: function (deleteElement) {
-                            if (confirm('Are you sure you want to delete this element?')) {
-                                $(this).slideUp(deleteElement);
-                            }
-                        }
-                    });
-                }
-
-                return {
-                    // public functions
-                    init: function () {
-                        demo3();
-                    }
-                };
-            }();
-
-            jQuery(document).ready(function () {
-                KTFormRepeater.init();
-            });
-
-
-            // Image
+            //Image
             var avatar = new KTImageInput('kt_image');
-
             avatar.on('cancel', function (imageInput) {
                 swal.fire({
                     title: 'Image successfully changed !',
@@ -337,7 +283,6 @@
                     confirmButtonClass: 'btn btn-primary font-weight-bold'
                 });
             });
-
             avatar.on('change', function (imageInput) {
                 swal.fire({
                     title: 'Image successfully changed !',
@@ -347,7 +292,6 @@
                     confirmButtonClass: 'btn btn-primary font-weight-bold'
                 });
             });
-
             avatar.on('remove', function (imageInput) {
                 swal.fire({
                     title: 'Image successfully removed !',
@@ -359,7 +303,7 @@
             });
 
 
-            //  select2
+            // select2
             var KTSelect2 = function () {
                 // Private functions
                 var demos = function () {
@@ -370,6 +314,10 @@
                     });
 
                 }
+                // Initialization
+                jQuery(document).ready(function () {
+                    KTSelect2.init();
+                });
 
                 // Public functions
                 return {
@@ -378,6 +326,26 @@
                     }
                 };
             }();
+
+
+            // add item repeater
+            let i = 1;
+            jQuery('.repeater-create').on('click', function () {
+                i = i + 1;
+                let repeatIteam =
+                    '<div class="repeater-list-item">' +
+                    '<input type="file" name="photo[]" multiple="multiple" accept=".png, .jpg, .jpeg"/>' +
+                    '<input type="text" name="title[]"  class="form-control" placeholder="اسم وصف الصورة">' +
+                    '<div class="repeater-delete btn btn-danger font-weight-bold btn-icon"><i class="la la-remove"></i></div>' +
+                    '</div>';
+
+                jQuery(repeatIteam).insertBefore(this);
+
+            });
+            // delete item repeater
+            jQuery(document).on('click', '.repeater-delete', function () {
+                jQuery(this).parents('.repeater-list-item').remove();
+            });
 
         </script>
 

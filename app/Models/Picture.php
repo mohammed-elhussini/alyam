@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Picture extends Model
 {
     use HasFactory;
-    public function cars(){
-        return $this->hasMany(Car::class);
+
+    public function car(){
+        return $this->belongsTo(Car::class);
     }
 }

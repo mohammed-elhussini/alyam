@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('picture');
+            $table->longText('picture')->nullable();
             $table->longText('except');
             $table->longText('description');
             $table->string('model');
             $table->string('manufacture');
+            $table->string('price');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('tax_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');

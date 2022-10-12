@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('car_id');
             $table->string('title');
             $table->longText('picture');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->timestamps();
         });
     }

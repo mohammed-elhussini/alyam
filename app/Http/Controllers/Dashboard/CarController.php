@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Picture;
 use App\Models\Tax;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,105 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd(Request());
+//        $attributes = request()->validate([
+//            'name' => 'required',
+//            'except' => 'nullable',
+//            'description' => 'nullable',
+//            'model' => 'nullable',
+//            'manufacture' => 'nullable',
+//            'brand_id' => 'nullable',
+//            'price' => 'nullable',
+//            'tax_id' => 'nullable',
+//            'picture' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+//            'photo' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+//            'title' => 'nullable',
+//        ]);
+//        $avatarPath = null;
+//        if (request()->hasFile('picture')) {
+//
+//            $avatarName = pathinfo(request()->file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
+//            $avatarExt = request()->file('picture')->getClientOriginalExtension();
+//            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+//
+//            $avatarPath = request()->file('picture')->storeAs(
+//                'uploads/cars',
+//                $avatarNewName,
+//                'public',
+//            );
+//            $attributes['picture'] = $avatarPath;
+//        }
+//
+//        $car = Car::create($attributes);
+//
+//        foreach($attributes['photo'] as $k => $photo){
+//            $pic = new Picture;
+//            $pic->car_id = $car->id;
+//
+//            $pic->title = $attributes['title'][$k];
+//
+//            $avatarName = pathinfo($attributes['photo']->getClientOriginalName(), PATHINFO_FILENAME);
+//            $avatarExt = $attributes['photo']->getClientOriginalExtension();
+//            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+//
+//            $avatarPath = $attributes['photo']->storeAs(
+//                'uploads/cars',
+//                $avatarNewName,
+//                'public',
+//            );
+//            $pic->photo = $avatarPath;
+//            $pic->save();
+//        }
+//
+//        return redirect('admin/cars')->with('message', 'Car added successfully!');
+
+
+
+
+        $car = new Car;
+        $car->name = $request->name;
+        $car->except = $request->except;
+        $car->description = $request->description;
+        $car->model = $request->model;
+        $car->manufacture = $request->manufacture;
+        $car->brand_id = $request->brand_id;
+        $car->price = $request->price;
+        $car->tax_id = $request->tax_id;
+
+        $avatarPath = null;
+        if (request()->hasFile('picture')) {
+            $avatarName = pathinfo(request()->file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
+            $avatarExt = request()->file('picture')->getClientOriginalExtension();
+            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+            $avatarPath = request()->file('picture')->storeAs(
+                'uploads/cars',
+                $avatarNewName,
+                'public',
+            );
+            $car->picture = $avatarPath;
+        }
+
+        $newcar = $car->save();
+        $title = $request->title;
+
+        foreach($request->photo as $k => $photo){
+            $pic = new Picture;
+            $pic->car_id = $car->id;
+            $pic->title = $title[$k];
+            $avatarName = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+            $avatarExt = $photo->getClientOriginalExtension();
+            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+            $avatarPath = $photo->storeAs(
+                'uploads/cars',
+                $avatarNewName,
+                'public',
+            );
+            $pic->picture = $avatarPath;
+            $pic->save();
+        }
+
+        return redirect('admin/cars')->with('message', 'Car added successfully!');
+
     }
 
     /**
