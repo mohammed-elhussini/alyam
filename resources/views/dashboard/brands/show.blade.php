@@ -15,14 +15,15 @@
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item">
-                        <a href="{{route('brands.index')}}" class="text-muted">الماركات</a>
+                        <a href="{{route('brands.index')}}"
+                           class="text-muted">
+                            الماركات
+                        </a>
                     </li>
-
                 </ul>
                 <!--end::Actions-->
             </div>
             <!--end::Info-->
-
         </div>
     </div>
     <!--end::Subheader-->
@@ -63,17 +64,78 @@
                 <div class="d-flex align-items-center bg-light-info rounded p-5 mb-3">
                     {!!  $brand->description !!}
                 </div>
+                    <h2 class="text-center my-10"> {{ $brand->title }}  - السيارات ف ماركة  </h2>
+                    <!--begin: Datatable-->
+                    <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>الصورة</th>
+                            <th>اسم السيارة</th>
+                            <th>سعر السيارة</th>
+                            <th>رابط السيارة</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach( $brand->cars as $car)
+                            <tr>
+                                <td>{{$car->id}}</td>
+                                <td>
+                                    <div class="symbol symbol-40 symbol-sm flex-shrink-0">
+                                        <img src="{{$car->picture ? asset('storage/'.$car->picture) : asset('dashboard/assets/media/users/blank.png') }}">
+                                    </div>
+                                </td>
+                                <td>{{$car->name}}</td>
+                                <td>{{$car->price}}</td>
+
+                                <td>
+
+
+                                    <a href="{{route('brands.edit',$brand->id)}}"
+                                       class="btn btn-sm btn-clean btn-icon mr-2"
+                                       title="Edit details">
+                                    <span class="svg-icon svg-icon-md">
+                                       <i class="icon-xl la la-pencil-alt"></i>
+                                    </span>
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <!--end: Datatable-->
             </div>
         </div>
         <!--end::Card-->
+
+{{--        @dd($cars)--}}
+
+
+
     </x-dashboard.wrap>
 
     @push('scripts')
-
+        <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+        <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/scrollable.js')}}"></script>
         <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>
-
         <script>
             jQuery(document).ready(function () {
+                //
+                $('#kt_datatable').DataTable({
+                    pagingType: 'full_numbers',
+                    scrollY: 500,
+                    scrollX: true,
+                    paging: true,
+                    // lengthMenu: [
+                    //     [10, 25, 50, -1],
+                    //     [10, 25, 50, 'All'],
+                    // ],
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json',
+                    },
+                });
                 //
                 jQuery(".kt_sweetalert").on('click', function (e) {
                     var form = $(this).closest("form");

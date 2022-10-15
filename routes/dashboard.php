@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\dashboardAuthController;
+use App\Http\Controllers\Dashboard\DashboardAuthController;
+use App\Http\Controllers\Dashboard\DashboardHomeController;
 use App\Http\Controllers\Dashboard\ManagerController;
 use \App\Http\Controllers\Dashboard\ContactController;
 use \App\Http\Controllers\Dashboard\UserController;
@@ -23,8 +24,9 @@ use \App\Http\Controllers\Dashboard\CarController;
 */
 Route::middleware('dashboardAuthLogin')->group(function () {
 
-    Route::get('/dashboard/login', [dashboardAuthController::class, 'login']);
-    Route::post('/dashboard/login', [dashboardAuthController::class, 'authenticate']);
+    Route::get('/dashboard/login', [DashboardAuthController::class, 'login']);
+    Route::post('/dashboard/login', [DashboardAuthController::class, 'authenticate']);
+
     Route::get('/forget', function () {
         return view('dashboard.authentication.forget');
     })->name('forget');
@@ -34,11 +36,9 @@ Route::middleware('dashboardAuthLogin')->group(function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'dashboardAuth'], function () {
 
-    Route::get('/', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/', [DashboardHomeController::class, 'dashboardHome'])->name('dashboard');
     //
-    Route::get('/logout', [dashboardAuthController::class, 'logout'])->name('logout');
+    Route::get('/logout', [DashboardAuthController::class, 'logout'])->name('logout');
     //
     Route::resource('managers', ManagerController::class);
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -68,7 +69,10 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return view('dashboard.brands.show', compact('brand'));
+        //$brand = Brand::findOrFail($id);
+        $cars = Car::where('brand_id', $brand)->get();
+
+        return view('dashboard.brands.show', compact('brand','cars'));
     }
 
     /**

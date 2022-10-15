@@ -29,9 +29,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        $brabds = Brand::all();
+        $brands = Brand::all();
         $taxes = Tax::all();
-        return view('dashboard.cars.create',compact('brabds','taxes'));
+        return view('dashboard.cars.create',compact('brands','taxes'));
     }
 
     /**
@@ -95,7 +95,19 @@ class CarController extends Controller
 //        return redirect('admin/cars')->with('message', 'Car added successfully!');
 
 
-
+        $this->validate(request(), [
+            'name' => 'required',
+            'except' => 'nullable',
+            'description' => 'nullable',
+            'model' => 'nullable',
+            'manufacture' => 'nullable',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'tax_id' => 'nullable',
+            'picture' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'title' => 'nullable',
+        ]);
 
         $car = new Car;
         $car->name = $request->name;
@@ -162,7 +174,9 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        //
+        $brands = Brand::all();
+        $taxes = Tax::all();
+        return view('dashboard.cars.edit',compact('car','brands','taxes'));
     }
 
     /**

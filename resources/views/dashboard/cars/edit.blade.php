@@ -12,7 +12,7 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">أضف سيارة</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">تعديل سيارة - {{$car->name}} </h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
@@ -43,17 +43,18 @@
             @endif
 
             <form method="post"
-                  action="{{route('cars.store')}}"
+                  action="{{route('cars.store',$car->id)}}"
                   enctype="multipart/form-data"
             >
                 @csrf
+                @method('put')
                 <!--begin::Body-->
                 <div class="card-body">
                     <div class="form-group w-100">
                         <label class="card-label font-size-lg font-weight-bolder text-dark">العنوان</label>
                         <input type="text"
                                class="form-control form-control-solid @error('name') is-invalid @enderror"
-                               value="{{old('name')}}"
+                               value="{{$car->name}}"
                                name="name"
                                placeholder="إسم السيارة">
                         @error('name')
@@ -64,7 +65,7 @@
                     <div class="form-group w-100">
                         <label class="card-label font-weight-bolder text-dark">الوصف المختصر</label>
                         <textarea name="except"
-                                  class="form-control @error('except') is-invalid @enderror">{{old('except')}}</textarea>
+                                  class="form-control @error('except') is-invalid @enderror">{{$car->except}}</textarea>
                         @error('except')
                         <div class="form-text invalid-feedback">{{$message}}</div>
                         @enderror
@@ -73,7 +74,7 @@
                         <label class="card-label font-weight-bolder text-dark">الوصف</label>
                         <textarea name="description"
                                   class="@error('description') is-invalid @enderror"
-                                  id="kt-ckeditor">{{old('description')}}</textarea>
+                                  id="kt-ckeditor">{{$car->description}}</textarea>
                         @error('description')
                         <div class="form-text invalid-feedback">{{$message}}</div>
                         @enderror
@@ -83,7 +84,7 @@
                         <label class="card-label font-size-lg font-weight-bolder text-dark">الموديل</label>
                         <input type="text"
                                class="form-control form-control-solid @error('model') is-invalid @enderror"
-                               value="{{old('model')}}"
+                               value="{{$car->model}}"
                                name="model"
                                placeholder="SKU">
                         @error('model')
@@ -93,20 +94,23 @@
 
                     <div class="form-group w-100">
                         <label class="card-label font-weight-bolder text-dark">سنة التصنيع</label>
+
                         @php
                             $firstYear = (int)date('Y') - 84;
                             $lastYear =  now()->year;
                         @endphp
-                        <select class="form-control select2  @error('manufacture') is-invalid @enderror"
+                        <select class="form-control select2 @error('manufacture') is-invalid @enderror"
                                 data-placeholder="سنة التصنيع"
                                 name="manufacture">
-                            <option value=""></option>
 
-                            @for($year=$firstYear; $year<=$lastYear; $year++) {
-                            <option value="{{$year}}">
-                                {{$year}}
-                            </option>
+                            @for($year=$firstYear ; $year<=$lastYear; $year++)
+                                {
+                                <option value="{{ $year }}"
+                                    {{ $year == $car->manufacture ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
                             @endfor
+
                         </select>
                         @error('manufacture')
                         <div class="form-text invalid-feedback">{{$message}}</div>
@@ -119,9 +123,11 @@
                         <select class="form-control select2 @error('brand_id') is-invalid @enderror"
                                 data-placeholder="ماركة السيارة"
                                 name="brand_id">
-                            <option value=""></option>
                             @foreach($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->title}}</option>
+                                <option value="{{$brand->id}}"
+                                    {{ $brand->id == $car->brand_id ? 'selected' : '' }}>
+                                    {{$brand->title}}
+                                </option>
                             @endforeach
                         </select>
                         @error('brand_id')
@@ -135,6 +141,7 @@
                         <input type="number"
                                class="form-control @error('price') is-invalid @enderror"
                                name="price"
+                               value="{{$car->price}}"
                                placeholder="السعر"/>
                         @error('price')
                         <div class="form-text invalid-feedback">{{$message}}</div>
@@ -147,9 +154,11 @@
                         <select class="form-control select2 @error('tax_id') is-invalid @enderror"
                                 data-placeholder="اختار الضريبة المناسبة"
                                 name="tax_id">
-                            <option value=""></option>
                             @foreach($taxes as $tax)
-                                <option value="{{$tax->id}}">{{$tax->name}}</option>
+                                <option value="{{$tax->id}}"
+                                    {{ $tax->id == $car->tax_id ? 'selected' : '' }}>
+                                    {{$tax->name}}
+                                </option>
                             @endforeach
                         </select>
                         @error('tax_id')
@@ -157,48 +166,53 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-3 text-lg-left text-left">الصورة الشخصية</label>
-                        <div class="col-9">
-                            <div class="image-input image-input-outline @error('picture') is-invalid @enderror"
-                                 id="kt_image"
-                                 style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
-                                <div class="image-input-wrapper"
-                                     style="background-image: url('{{asset('dashboard/assets/media/users/blank.png') }}')"></div>
+                    <div class="form-group">
+                        <label class="d-block col-form-label text-lg-left text-left">الصورة الشخصية</label>
 
-                                <label
-                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="change"
-                                    data-toggle="tooltip"
-                                    title=""
-                                    data-original-title="Change avatar">
-                                    <i class="fa fa-pen icon-sm text-muted"></i>
-                                    <input type="file"
-                                           name="picture"
-                                           value="{{old('picture')}}"
-                                           accept=".png, .jpg, .jpeg"/>
-                                </label>
+                        <div class="image-input image-input-outline @error('picture') is-invalid @enderror"
+                             id="kt_image"
+                             style="background-image: url({{asset('dashboard/assets/media/users/blank.png') }})">
+                            <div class="image-input-wrapper"
+                                 style="background-image: url('{{asset('dashboard/assets/media/users/blank.png') }}')"></div>
 
-                                <span
-                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="cancel"
-                                    data-toggle="tooltip"
-                                    title="Cancel avatar">
+                            <label
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="change"
+                                data-toggle="tooltip"
+                                title=""
+                                data-original-title="Change avatar">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file"
+                                       name="picture"
+                                       value="picture"
+                                       accept=".png, .jpg, .jpeg"/>
+                            </label>
+
+                            <span
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="cancel"
+                                data-toggle="tooltip"
+                                title="Cancel avatar">
                                           <i class="ki ki-bold-close icon-xs text-muted"></i>
                                         </span>
 
-                                <span
-                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
-                                    data-action="remove"
-                                    data-toggle="tooltip"
-                                    title="Remove avatar">
+                            <span
+                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                data-action="remove"
+                                data-toggle="tooltip"
+                                title="Remove avatar">
                                           <i class="ki ki-bold-close icon-xs text-muted"></i>
                                         </span>
-                            </div>
-                            @error('picture')
-                            <div class="form-text invalid-feedback">{{$message}}</div>
-                            @enderror
                         </div>
+                        @error('picture')
+                        <div class="form-text invalid-feedback">{{$message}}</div>
+                        @enderror
+                        <div class="">
+                            <img
+                                src="{{$car->picture ? asset('storage/'.$car->picture) : asset('dashboard/assets/media/users/blank.png') }}">
+
+                        </div>
+
                     </div>
 
 
@@ -206,21 +220,28 @@
 
                         <div class="form-group">
                             <label for="card-label font-weight-bolder text-dark">الصور</label>
-                            <div class="repeater-list">
-                                <div class="repeater-list-item">
-                                    <input type="file" name="photo[]"
-                                           multiple="multiple"
-                                           accept=".png, .jpg, .jpeg"/>
-                                    <input type="text"
-                                           name="title[]"
-                                           class="form-control"
-                                           placeholder="اسم وصف الصورة">
+                            @foreach($car->pictures as $picture)
+                                <div class="repeater-list">
+                                    <div class="repeater-list-item">
+                                        <input type="file" name="photo[]"
+                                               multiple="multiple"
+                                               accept=".png, .jpg, .jpeg"/>
+                                        <img class="w-100 rounded"
+                                            src="{{$picture->picture ? asset('storage/'.$picture->picture) : asset('dashboard/assets/media/users/blank.png') }}">
+                                        <input type="text"
+                                               name="title[]"
+                                               class="form-control"
+                                               value="{{$picture->title}}"
+                                               placeholder="اسم وصف الصورة">
+                                        <div class="repeater-delete btn btn-danger font-weight-bold btn-icon"><i class="la la-remove"></i></div>
+                                    </div>
+                                    @endforeach
+                                    <div class="repeater-create btn font-weight-bold btn-primary">
+                                        <i class="la la-plus"></i>
+                                        إضافة
+                                    </div>
                                 </div>
-                                <div class="repeater-create btn font-weight-bold btn-primary">
-                                    <i class="la la-plus"></i>
-                                    إضافة
-                                </div>
-                            </div>
+
                         </div>
 
 
@@ -351,7 +372,6 @@
             });
 
 
-
             // Upload Avatar
             function uploadAvatar(input, place) {
                 if (input.files && input.files[0]) {
@@ -364,6 +384,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+
             jQuery('.uploadAvatar input').change(function () {
                 uploadAvatar(this, jQuery(this).parent().prev('.profileAvatarPreview'));
             });

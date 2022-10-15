@@ -33,9 +33,7 @@
         <!--begin::Card-->
         <div class="card">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
-
                 <div class="card-toolbar">
-
                     <!--begin::Button-->
                     <a href="{{route('managers.create')}}"
                        class="btn btn-primary font-weight-bolder">

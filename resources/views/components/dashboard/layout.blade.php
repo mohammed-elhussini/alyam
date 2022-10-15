@@ -134,9 +134,7 @@
             <!--end::Header-->
             <!--begin::Content-->
             <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-
                 {{$slot}}
-
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
@@ -166,7 +164,6 @@
     <!--begin::Header-->
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
         <h3 class="font-weight-bold m-0">
-            User Profile
             <a href="#"
                class="btn btn-xs btn-icon btn-light btn-hover-primary"
                id="kt_quick_user_close">
@@ -181,7 +178,7 @@
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
                 <div class="symbol-label"
-                     style="background-image:url('{{asset('dashboard/assets/media/users/300_21.jpg')}}')"></div>
+                     style="background-image:url('{{auth()->guard('dashboard')->user()->avatar ? asset('storage/'.auth()->guard('dashboard')->user()->avatar) : asset('dashboard/assets/media/users/blank.png')}}')"></div>
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
@@ -190,10 +187,9 @@
                     {{auth()->guard('dashboard')->user()->first_name}}
                     {{auth()->guard('dashboard')->user()->last_name}}
                 </a>
-                <div class="text-muted mt-1">Application Developer</div>
                 <div class="navi mt-2">
                     <a href="#" class="navi-item">
-        <span class="navi-link p-0 pb-2">
+                         <span class="navi-link p-0 pb-2">
          <span class="navi-icon mr-1">
           <span class="svg-icon svg-icon-lg svg-icon-primary">
            <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg-->
@@ -219,11 +215,13 @@
               <!--end::Svg Icon-->
           </span>
          </span>
-         <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+         <span class="navi-text text-muted text-hover-primary">
+              {{auth()->guard('dashboard')->user()->email}}
+         </span>
         </span>
                     </a>
                     <a href="{{route('logout')}}"
-                       class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+                       class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">تسجيل الخروج</a>
                 </div>
             </div>
         </div>

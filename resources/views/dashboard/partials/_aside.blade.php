@@ -47,6 +47,7 @@
              data-menu-dropdown-timeout="500">
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
+
                 <li class="menu-item menu-item-active"
                     aria-haspopup="true">
                     <a href="{{route('dashboard')}}" class="menu-link">
@@ -70,7 +71,7 @@
                     </a>
                 </li>
 
-                <li class="menu-item menu-item-submenu-n menu-item-open-n menu-item-here-n"
+                <li class="menu-item @if (request()->routeIs('cars.*') || request()->routeIs('brands.*') || request()->routeIs('taxes.*')) menu-item-submenu menu-item-open menu-item-here @endif"
                     aria-haspopup="true"
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
@@ -82,7 +83,7 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item menu-item-submenu menu-item-open-n menu-item-here-n"
+                            <li class="menu-item menu-item-submenu @if (request()->routeIs('cars.*')) menu-item-open menu-item-here @endif"
                                 aria-haspopup="true"
                                 data-menu-toggle="hover">
                                 <a href="javascript:void(0)"
@@ -96,17 +97,20 @@
                                 <div class="menu-submenu">
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
-                                        <li class="menu-item" aria-haspopup="true">
-                                            <a href="{{route('cars.index')}}" class="menu-link">
+                                        <li class="menu-item @if (request()->route()->named('cars.index')) menu-item-active @endif"
+                                            aria-haspopup="true">
+                                            <a href="{{route('cars.index')}}"
+                                               class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
                                                 <span class="menu-text">كافة السيارت</span>
                                             </a>
                                         </li>
-                                        <li class="menu-item menu-item-active-n"
+                                        <li class="menu-item @if (request()->route()->named('cars.create')) menu-item-active @endif"
                                             aria-haspopup="true">
-                                            <a href="{{route('cars.create')}}" class="menu-link">
+                                            <a href="{{route('cars.create')}}"
+                                               class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
                                                 </i>
@@ -117,7 +121,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="menu-item menu-item-submenu"
+                            <li class="menu-item menu-item-submenu @if (request()->routeIs('brands.*')) menu-item-open menu-item-here @endif"
                                 aria-haspopup="true"
                                 data-menu-toggle="hover">
                                 <a href="javascript:void(0)"
@@ -131,7 +135,8 @@
                                 <div class="menu-submenu">
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
-                                        <li class="menu-item" aria-haspopup="true">
+                                        <li class="menu-item @if (request()->route()->named('brands.index')) menu-item-active @endif"
+                                            aria-haspopup="true">
                                             <a href="{{route('brands.index')}}"
                                                class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
@@ -140,7 +145,7 @@
                                                 <span class="menu-text">كافة الماركات</span>
                                             </a>
                                         </li>
-                                        <li class="menu-item"
+                                        <li class="menu-item @if (request()->route()->named('brands.create')) menu-item-active @endif"
                                             aria-haspopup="true">
                                             <a href="{{route('brands.create')}}"
                                                class="menu-link">
@@ -154,7 +159,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="menu-item menu-item-submenu"
+                            <li class="menu-item menu-item-submenu @if (request()->routeIs('taxes.*')) menu-item-open menu-item-here @endif"
                                 aria-haspopup="true"
                                 data-menu-toggle="hover">
                                 <a href="javascript:void(0)"
@@ -168,7 +173,8 @@
                                 <div class="menu-submenu">
                                     <i class="menu-arrow"></i>
                                     <ul class="menu-subnav">
-                                        <li class="menu-item" aria-haspopup="true">
+                                        <li class="menu-item @if (request()->route()->named('taxes.index')) menu-item-active @endif"
+                                            aria-haspopup="true">
                                             <a href="{{route('taxes.index')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
@@ -176,7 +182,8 @@
                                                 <span class="menu-text">كافة الضرائب</span>
                                             </a>
                                         </li>
-                                        <li class="menu-item" aria-haspopup="true">
+                                        <li class="menu-item @if (request()->route()->named('taxes.create')) menu-item-active @endif"
+                                            aria-haspopup="true">
                                             <a href="{{route('taxes.create')}}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-dot">
                                                     <span></span>
@@ -184,7 +191,6 @@
                                                 <span class="menu-text">أضف ضريبة</span>
                                             </a>
                                         </li>
-
                                     </ul>
                                 </div>
                             </li>
@@ -192,7 +198,7 @@
                     </div>
                 </li>
 
-                <li class="menu-item menu-item-submenu"
+                <li class="menu-item menu-item-submenu @if (request()->routeIs('branches.*')) menu-item-submenu menu-item-open menu-item-here @endif"
                     aria-haspopup="true"
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
@@ -204,7 +210,7 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('branches.index')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('branches.index')}}"
                                    class="menu-link">
@@ -214,7 +220,7 @@
                                     <span class="menu-text">كافة الفروع</span>
                                 </a>
                             </li>
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('branches.create')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('branches.create')}}"
                                    class="menu-link">
@@ -228,7 +234,7 @@
                     </div>
                 </li>
 
-                <li class="menu-item menu-item-submenu"
+                <li class="menu-item menu-item-submenu @if (request()->routeIs('pages.*')) menu-item-submenu menu-item-open menu-item-here @endif"
                     aria-haspopup="true"
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
@@ -240,7 +246,7 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('pages.index')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('pages.index')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
@@ -249,7 +255,7 @@
                                     <span class="menu-text">كافة الصفحات</span>
                                 </a>
                             </li>
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('pages.create')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('pages.create')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
@@ -262,7 +268,7 @@
                     </div>
                 </li>
 
-                <li class="menu-item menu-item-submenu"
+                <li class="menu-item menu-item-submenu @if (request()->routeIs('users.*')) menu-item-submenu menu-item-open menu-item-here @endif"
                     aria-haspopup="true"
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
@@ -274,7 +280,7 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('users.index')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('users.index')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
@@ -283,7 +289,7 @@
                                     <span class="menu-text">كافة الأعضاء</span>
                                 </a>
                             </li>
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('users.create')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('users.create')}}"
                                    class="menu-link">
@@ -297,7 +303,6 @@
                     </div>
                 </li>
 
-
                 <li class="menu-item"
                     aria-haspopup="true">
                     <a href="{{route('orders')}}" class="menu-link">
@@ -306,7 +311,7 @@
                     </a>
                 </li>
 
-                <li class="menu-item"
+                <li class="menu-item @if (request()->route()->named('contacts.index')) menu-item-active @endif"
                     aria-haspopup="true">
                     <a href="{{route('contacts.index')}}" class="menu-link">
                         <span class="svg-icon menu-icon"><i class="la la-envelope-open"></i> </span>
@@ -314,7 +319,7 @@
                     </a>
                 </li>
 
-                <li class="menu-item menu-item-submenu"
+                <li class="menu-item menu-item-submenu @if (request()->routeIs('managers.*')) menu-item-submenu menu-item-open menu-item-here @endif"
                     aria-haspopup="true"
                     data-menu-toggle="hover">
                     <a href="javascript:void(0)"
@@ -326,7 +331,7 @@
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('managers.index')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('managers.index')}}"
                                    class="menu-link">
@@ -336,7 +341,7 @@
                                     <span class="menu-text">كافة المدريين</span>
                                 </a>
                             </li>
-                            <li class="menu-item"
+                            <li class="menu-item @if (request()->route()->named('managers.create')) menu-item-active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('managers.create')}}"
                                    class="menu-link">
