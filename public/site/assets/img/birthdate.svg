@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.272 33.6">
+  <g id="birthdate" transform="translate(0.75 0.75)">
+    <g id="Calendar" transform="translate(0 0)">
+      <path id="Stroke_1" data-name="Stroke 1" d="M0,14.885C0,3.72,3.722,0,14.885,0S29.772,3.72,29.772,14.885,26.05,29.77,14.885,29.77,0,26.05,0,14.885Z" transform="translate(0 2.33)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_3" data-name="Stroke 3" d="M0,.5H28.9" transform="translate(0.442 11.175)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_5" data-name="Stroke 5" d="M.5.5H.51" transform="translate(21.459 17.494)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_7" data-name="Stroke 7" d="M.5.5H.51" transform="translate(14.398 17.494)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_9" data-name="Stroke 9" d="M.5.5H.51" transform="translate(7.324 17.494)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_11" data-name="Stroke 11" d="M.5.5H.51" transform="translate(21.459 23.676)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_13" data-name="Stroke 13" d="M.5.5H.51" transform="translate(14.398 23.676)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_15" data-name="Stroke 15" d="M.5.5H.51" transform="translate(7.324 23.676)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_17" data-name="Stroke 17" d="M.5,0V5.236" transform="translate(20.82)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_19" data-name="Stroke 19" d="M.5,0V5.236" transform="translate(7.966)" fill="none" stroke="#44362c" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

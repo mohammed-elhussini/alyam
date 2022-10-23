@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.284 22.258">
+  <g id="Camera" transform="translate(-2.539 -2.292)">
+    <g id="Camera-2" data-name="Camera" transform="translate(3.289 3.042)">
+      <path id="Stroke_2" data-name="Stroke 2" d="M7.61,3.805A3.805,3.805,0,1,0,3.805,7.61,3.806,3.806,0,0,0,7.61,3.805Z" transform="translate(7.087 7.635)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_4" data-name="Stroke 4" d="M10.892,20.758c9.733,0,10.892-2.916,10.892-9.235,0-4.429-.586-6.8-4.275-7.818a2.331,2.331,0,0,1-1.019-.646C16,2.521,15.64.866,14.453.366a17.512,17.512,0,0,0-7.121,0C6.165.843,5.785,2.521,5.294,3.059A2.324,2.324,0,0,1,4.275,3.7C.586,4.724,0,7.094,0,11.523,0,17.842,1.159,20.758,10.892,20.758Z" transform="translate(0 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_11" data-name="Stroke 11" d="M.5.5H.506" transform="translate(16.339 6.708)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

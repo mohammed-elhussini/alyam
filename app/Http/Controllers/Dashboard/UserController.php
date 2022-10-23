@@ -136,9 +136,9 @@ class UserController extends Controller
                 $avatarNewName,
                 'public',
             );
-
+            $attributes['avatar'] = $avatarPath;
         }
-        $attributes['avatar'] = $avatarPath;
+
         $attributes['birthday'] = Carbon::parse(request('birthday'))->format('y-m-d');
         $attributes['driving_license_exp'] =  Carbon::parse(request('driving_license_exp'))->format('y-m-d');
         if (request('password')) {

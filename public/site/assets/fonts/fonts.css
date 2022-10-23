@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "URW";
+    font-weight: 300;
+    font-display: swap;
+    src: url('URW_DIN_Arabic_XLight.ttf') format('truetype');
+}
+@font-face {
+    font-family: "URW";
+    font-weight: 400;
+    font-display: swap;
+    src: url('URW_DIN_Arabic.ttf') format('truetype');
+}
+@font-face {
+    font-family: "URW";
+    font-weight: 500;
+    font-display: swap;
+    src: url('URW_DIN_Arabic_Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: "URW";
+    font-weight: 600;
+    font-display: swap;
+    src: url('URW_DIN_Arabic_Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: "URW";
+    font-weight: 700;
+    font-display: swap;
+    src: url('URW_DIN_Arabic_Black.ttf') format('truetype');
+}

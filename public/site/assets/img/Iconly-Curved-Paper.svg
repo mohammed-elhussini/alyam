@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.812" height="29.39" viewBox="0 0 26.812 29.39">
+  <g id="Iconly_Curved_Paper" data-name="Iconly/Curved/Paper" transform="translate(-30.9 63)">
+    <g id="Paper" transform="translate(31.65 -62.25)">
+      <path id="Stroke_3" data-name="Stroke 3" d="M24.89,8.367,16.342.226A27.436,27.436,0,0,0,12.648,0C3.166,0,0,3.5,0,13.945,0,24.407,3.166,27.89,12.648,27.89c9.5,0,12.663-3.482,12.663-13.945A31.727,31.727,0,0,0,24.89,8.367Z" transform="translate(0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Stroke_5" data-name="Stroke 5" d="M0,0V4.012a5.07,5.07,0,0,0,5.071,5.07H9.52" transform="translate(15.504 0.125)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      <g id="Iconly_Curved_Profile" data-name="Iconly/Curved/Profile" transform="translate(8.217 9.206)">
+        <g id="Profile" transform="translate(0 0)">
+          <path id="Stroke_1" data-name="Stroke 1" d="M4.439,4.734C2.045,4.734,0,4.362,0,2.87S2.032,0,4.439,0,8.878,1.364,8.878,2.856,6.846,4.734,4.439,4.734Z" transform="translate(0 7.758)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+          <path id="Stroke_3-2" data-name="Stroke 3" d="M2.845,5.69a2.835,2.835,0,1,0-.02,0Z" transform="translate(1.589 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
