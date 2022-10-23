@@ -25,11 +25,11 @@
             </select>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 mb-3">
-            <input class="form-control birthdate" type="text" onfocus="(this.type='date')"
+            <input class="form-control date birthdate" type="text"
                    placeholder="تاريخ الاستلام">
         </div>
         <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 mb-3">
-            <input class="form-control birthdate" type="text" onfocus="(this.type='date')"
+            <input class="form-control date birthdate" type="text"
                    placeholder="تاريخ التسليم">
         </div>
         <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 mb-3">

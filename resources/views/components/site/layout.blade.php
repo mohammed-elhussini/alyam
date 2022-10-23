@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="{{asset('site/assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/assets/fontawesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/assets/fonts/fonts.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="{{asset('site/assets/css/style.css')}}">
     <script src="{{asset('site/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('site/assets/bootstrap/js/popper.min.js')}}"></script>
     <script src="{{asset('site/assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!--only for page like this-->
     <script src="{{asset('site/assets/js/range.js')}}"></script>
     <!--only for page like this-->
