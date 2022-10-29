@@ -1,4 +1,4 @@
-if(document.getElementById('dual-range')) {
+
 
     window.addEventListener('DOMContentLoaded', () => {
         new dualRangeSlider(document.querySelector(".dual-range"))
@@ -83,6 +83,6 @@ class dualRangeSlider {
 }
 
 
-}
+
 
 

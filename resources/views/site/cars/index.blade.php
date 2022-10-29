@@ -3,7 +3,7 @@
     <div class="pageHeader py-5">
         <div class="container">
             <div class="h2 text-center mb-4">اسطولنا</div>
-            <x-site.custom-search />
+            <x-site.custom-search :brands="$brands" :branches="$branches"/>
         </div>
     </div>
 
@@ -14,7 +14,9 @@
                     <div class="carTypes">
                         <div class="range px-1 pb-4">
                             <div class="h6">السعر</div>
-                            <div class="dual-range" data-min="450" data-max="1000">
+                            <div class="dual-range"
+                                 data-min="{{ $cars->min('price')}}"
+                                 data-max="{{ $cars->max('price')}}">
                                 <span class="handle left"></span>
                                 <span class="highlight"></span>
                                 <span class="handle right"></span>
@@ -48,11 +50,20 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                 <div class="cars pb-4">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                            <x-site.car-card />
-                        </div>
 
+                        @foreach($cars as $car)
+
+
+
+
+
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                            <x-site.car-card :car="$car"/>
+                        </div>
+                        @endforeach
                     </div>
+
+                    {{$cars->links()}}
                 </div>
             </div>
         </div>

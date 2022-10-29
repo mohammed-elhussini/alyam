@@ -12,7 +12,7 @@
             <div class="car"><img src="{{asset('site/assets/img/car.png')}}" class="img-fluid"/></div>
         </div>
         <div class="container">
-            <x-site.custom-search/>
+            <x-site.custom-search :brands="$brands" :branches="$branches"/>
         </div>
     </div>
 

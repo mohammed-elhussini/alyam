@@ -41,9 +41,9 @@ class UserController extends Controller
     {
         //dd(request());
         $attributes = request()->validate([
-           'name'=> 'required',
-           'first_name'=> 'required',
-           'last_name'=> 'required',
+           'name'=> 'required|unique:users,name',
+           'first_name'=> 'nullable',
+           'last_name'=> 'nullable',
            'nationality'=> 'required',
            'birthday'=> 'required',
            'phone'=> 'required|unique:users,phone',
@@ -75,7 +75,8 @@ class UserController extends Controller
         $attributes['password'] = bcrypt($attributes['password']);
 //         $attributes['password'] = Hash::make(request('password'));
 
-        User::create($attributes);
+        $user = User::create($attributes);
+        auth()->login($user);
         return redirect('admin/users')->with('message', 'user added successfully!');
     }
 
@@ -111,9 +112,9 @@ class UserController extends Controller
     public function update(User $user)
     {
         $attributes = request()->validate([
-            'name'=> 'required',
-            'first_name'=> 'required',
-            'last_name'=> 'required',
+            'name'=> 'required|unique:users,name,' .$user->id . ',id',
+            'first_name'=> 'nullable',
+            'last_name'=> 'nullable',
             'nationality'=> 'required',
             'birthday'=> 'required',
             'phone'=> 'required|unique:users,phone,' .$user->id . ',id',

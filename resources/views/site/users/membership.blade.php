@@ -116,9 +116,8 @@
                                         @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                        <input class="form-control birthdate"
-                                               type="text"
-                                               onfocus="(this.type='date')"
+                                        <input class="form-control date birthdate"
+                                               type="date"
                                                placeholder="تاريخ الميلاد"
                                                name="birthday">
                                         @error('birthday')
@@ -145,9 +144,8 @@
                                         @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                        <input class="form-control birthdate"
-                                               type="text"
-                                               onfocus="(this.type='date')"
+                                        <input class="form-control date birthdate"
+                                               type="date"
                                                placeholder="تاريخ الانتهاء"
                                                name="driving_license_exp">
                                         @error('driving_license_exp')

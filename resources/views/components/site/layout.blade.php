@@ -8,19 +8,16 @@
     <link rel="stylesheet" href="{{asset('site/assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/assets/fontawesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/assets/fonts/fonts.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="{{asset('site/assets/css/style.css')}}">
+
     <script src="{{asset('site/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('site/assets/bootstrap/js/popper.min.js')}}"></script>
     <script src="{{asset('site/assets/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <!--only for page like this-->
     <script src="{{asset('site/assets/js/range.js')}}"></script>
     <!--only for page like this-->
-    <!--only for map locations-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ZqKp9G_Bi9ytfGh-Al2Bxx2e8wLQK7A"></script>
-    <script src="{{asset('site/assets/js/map_branches.js')}}"></script>
-    <!--only for map locations-->
+
 </head>
 <body {{Route::current()->getName() == 'home' ? 'class=noBackground' : ''}} >
 
@@ -40,7 +37,7 @@
                         <li><a href="#">الرئيسية</a></li>
                         <li><a href="#">حجز سيارة</a></li>
                         <li><a href="#">الفروع</a></li>
-                        <li><a href="#">اسطولنا</a></li>
+                        <li><a href="{{route('cars')}}">اسطولنا</a></li>
                         <li><a href="#">من نحن</a></li>
                         <li><a href="{{route('contact')}}">اتصل بنا</a></li>
                         @guest
@@ -138,5 +135,11 @@
     </div>
 </footer>
 <script src="{{asset('site/assets/js/main.js')}}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!--only for map locations-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ZqKp9G_Bi9ytfGh-Al2Bxx2e8wLQK7A"></script>
+<script src="{{asset('site/assets/js/map_branches.js')}}"></script>
+<!--only for map locations-->
 </body>
 </html>

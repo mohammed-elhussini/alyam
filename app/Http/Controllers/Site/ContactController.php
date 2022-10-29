@@ -5,6 +5,7 @@ namespace App\Http\Controllers\site;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -22,11 +23,11 @@ class ContactController extends Controller
 
 
         //  Send mail to admin
-//        Mail::send('mail', $attributes, function($message) use ($attributes) {
-//            $message->from($attributes['email']);
-//            $message->to('robertnicjoo@outlook.com');
-//            $message->subject($attributes['product']);
-//        });
+        Mail::send('mail', $attributes, function($message) use ($attributes) {
+            $message->from($attributes['email']);
+            $message->to('admin@admin.com');
+            $message->subject('تجربة');
+        });
 
 
 
