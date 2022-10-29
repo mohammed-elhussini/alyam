@@ -21,12 +21,12 @@ use \App\Http\Controllers\Site\ContactController;
 
 //
 Route::get('/', [SiteHomeController::class,'home'])->name('home');
-Route::get('/login', [LoginController::class,'login'])->name('login');
-Route::post('/users/login', [LoginController::class,'authenticate']);
-Route::post('/users/create', [LoginController::class,'create']);
-Route::post('/logout', [LoginController::class,'destroy']);
-Route::get('/profile', [ProfileController::class,'profile'])->name('profile');
-Route::put('/profile/update', [ProfileController::class,'update']);
+Route::get('/login', [LoginController::class,'login'])->name('login')->middleware('guest');
+Route::post('/users/login', [LoginController::class,'authenticate'])->middleware('guest');
+Route::post('/users/create', [LoginController::class,'create'])->middleware('guest');
+Route::post('/logout', [LoginController::class,'destroy'])->middleware('auth');
+Route::get('/profile', [ProfileController::class,'profile'])->name('profile')->middleware('auth');
+Route::put('/profile/update', [ProfileController::class,'update'])->middleware('auth');
 Route::get('/brands/{brand:id}', [BrandController::class,'brand']);
 Route::get('/cars/', [CarController::class,'index'])->name('cars');
 Route::get('/cars/{car:id}', [CarController::class,'show']);
