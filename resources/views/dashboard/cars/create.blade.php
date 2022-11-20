@@ -102,7 +102,7 @@
                                 name="manufacture">
                             <option value=""></option>
 
-                            @for($year=$firstYear; $year<=$lastYear; $year++) {
+                            @for($year=$lastYear; $year>=$firstYear; $year--) {
                             <option value="{{$year}}">
                                 {{$year}}
                             </option>

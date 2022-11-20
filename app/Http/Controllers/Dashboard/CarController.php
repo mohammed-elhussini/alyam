@@ -19,7 +19,7 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::latest()->get();
-        return view('dashboard.cars.index',compact('cars'));
+        return view('dashboard.cars.index', compact('cars'));
     }
 
     /**
@@ -31,19 +31,19 @@ class CarController extends Controller
     {
         $brands = Brand::all();
         $taxes = Tax::all();
-        return view('dashboard.cars.create',compact('brands','taxes'));
+        return view('dashboard.cars.create', compact('brands', 'taxes'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 //        dd(Request());
-//        $attributes = request()->validate([
+        //        $attributes = request()->validate([
 //            'name' => 'required',
 //            'except' => 'nullable',
 //            'description' => 'nullable',
@@ -52,13 +52,13 @@ class CarController extends Controller
 //            'brand_id' => 'nullable',
 //            'price' => 'nullable',
 //            'tax_id' => 'nullable',
-//            'picture' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-//            'photo' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+//            'picture' => ['nullable','mimes:jpg,jpeg,png,gif', 'max:500000'],
+//            'photo' => ['nullable','array', 'mimes:jpg,jpeg,png,gif', 'max:500000'],
 //            'title' => 'nullable',
 //        ]);
-//        $avatarPath = null;
-//        if (request()->hasFile('picture')) {
 //
+//        if (request()->hasFile('picture')) {
+//            //$avatarPath = null;
 //            $avatarName = pathinfo(request()->file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
 //            $avatarExt = request()->file('picture')->getClientOriginalExtension();
 //            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
@@ -73,23 +73,26 @@ class CarController extends Controller
 //
 //        $car = Car::create($attributes);
 //
-//        foreach($attributes['photo'] as $k => $photo){
-//            $pic = new Picture;
-//            $pic->car_id = $car->id;
+//        if (request()->hasFile('photo')) {
+//            //$avatarPathPhoto = null;
+//            foreach (request()->file('photo') as $photo) {
 //
-//            $pic->title = $attributes['title'][$k];
+//                $avatarNamePhoto = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+//                $avatarExtPhoto = $photo->getClientOriginalExtension();
+//                $avatarNewNamePhoto = $avatarNamePhoto . '-' . uniqid() . '.' . $avatarExtPhoto;
 //
-//            $avatarName = pathinfo($attributes['photo']->getClientOriginalName(), PATHINFO_FILENAME);
-//            $avatarExt = $attributes['photo']->getClientOriginalExtension();
-//            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+//                $avatarPathPhoto = $photo->storeAs(
+//                    'uploads/cars',
+//                    $avatarNewNamePhoto,
+//                    'public',
+//                );
 //
-//            $avatarPath = $attributes['photo']->storeAs(
-//                'uploads/cars',
-//                $avatarNewName,
-//                'public',
-//            );
-//            $pic->photo = $avatarPath;
-//            $pic->save();
+//                $car->pictures()->create([
+//                    'car_id' => $car->id,
+//                    'title' => $attributes['title'],
+//                    'picture' => $avatarPathPhoto,
+//                ]);
+//            }
 //        }
 //
 //        return redirect('admin/cars')->with('message', 'Car added successfully!');
@@ -158,32 +161,32 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Car  $car
+     * @param \App\Models\Car $car
      * @return \Illuminate\Http\Response
      */
     public function show(Car $car)
     {
-        return view('dashboard.cars.show',compact('car'));
+        return view('dashboard.cars.show', compact('car'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Car  $car
+     * @param \App\Models\Car $car
      * @return \Illuminate\Http\Response
      */
     public function edit(Car $car)
     {
         $brands = Brand::all();
         $taxes = Tax::all();
-        return view('dashboard.cars.edit',compact('car','brands','taxes'));
+        return view('dashboard.cars.edit', compact('car', 'brands', 'taxes'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Car  $car
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Car $car
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Car $car)
@@ -194,7 +197,7 @@ class CarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Car  $car
+     * @param \App\Models\Car $car
      * @return \Illuminate\Http\Response
      */
     public function destroy(Car $car)
