@@ -208,11 +208,13 @@
                             <label for="card-label font-weight-bolder text-dark">الصور</label>
                             <div class="repeater-list">
                                 <div class="repeater-list-item">
-                                    <input type="file" name="photo[]"
-                                           multiple="multiple"
+                                    <input type="file"
+                                           name="photos[]"
+                                           multiple
                                            accept=".png, .jpg, .jpeg"/>
                                     <input type="text"
                                            name="title[]"
+                                           multiple
                                            class="form-control"
                                            placeholder="اسم وصف الصورة">
                                 </div>

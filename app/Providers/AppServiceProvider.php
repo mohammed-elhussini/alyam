@@ -8,6 +8,7 @@ use App\Models\Car;
 use App\Models\Contact;
 use App\Models\Manager;
 use App\Models\Page;
+use App\Models\Picture;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,11 +32,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
         Manager::unguard();
         Contact::unguard();
         Page::unguard();
         Branch::unguard();
         Brand::unguard();
         Car::unguard();
+        Picture::unguard();
     }
 }

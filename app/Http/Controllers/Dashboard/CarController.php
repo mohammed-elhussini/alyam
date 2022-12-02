@@ -42,119 +42,121 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-//        dd(Request());
-        //        $attributes = request()->validate([
-//            'name' => 'required',
-//            'except' => 'nullable',
-//            'description' => 'nullable',
-//            'model' => 'nullable',
-//            'manufacture' => 'nullable',
-//            'brand_id' => 'nullable',
-//            'price' => 'nullable',
-//            'tax_id' => 'nullable',
-//            'picture' => ['nullable','mimes:jpg,jpeg,png,gif', 'max:500000'],
-//            'photo' => ['nullable','array', 'mimes:jpg,jpeg,png,gif', 'max:500000'],
-//            'title' => 'nullable',
-//        ]);
-//
-//        if (request()->hasFile('picture')) {
-//            //$avatarPath = null;
-//            $avatarName = pathinfo(request()->file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
-//            $avatarExt = request()->file('picture')->getClientOriginalExtension();
-//            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
-//
-//            $avatarPath = request()->file('picture')->storeAs(
-//                'uploads/cars',
-//                $avatarNewName,
-//                'public',
-//            );
-//            $attributes['picture'] = $avatarPath;
-//        }
-//
-//        $car = Car::create($attributes);
-//
-//        if (request()->hasFile('photo')) {
-//            //$avatarPathPhoto = null;
-//            foreach (request()->file('photo') as $photo) {
-//
-//                $avatarNamePhoto = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-//                $avatarExtPhoto = $photo->getClientOriginalExtension();
-//                $avatarNewNamePhoto = $avatarNamePhoto . '-' . uniqid() . '.' . $avatarExtPhoto;
-//
-//                $avatarPathPhoto = $photo->storeAs(
-//                    'uploads/cars',
-//                    $avatarNewNamePhoto,
-//                    'public',
-//                );
-//
-//                $car->pictures()->create([
-//                    'car_id' => $car->id,
-//                    'title' => $attributes['title'],
-//                    'picture' => $avatarPathPhoto,
-//                ]);
-//            }
-//        }
-//
-//        return redirect('admin/cars')->with('message', 'Car added successfully!');
-
-
-        $this->validate(request(), [
+        //dd(Request());
+        $attributes = request()->validate([
             'name' => 'required',
             'except' => 'nullable',
             'description' => 'nullable',
             'model' => 'nullable',
             'manufacture' => 'nullable',
-            'brand_id' => 'required',
-            'price' => 'required',
+            'brand_id' => 'nullable',
+            'price' => 'nullable',
             'tax_id' => 'nullable',
-            'picture' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'title' => 'nullable',
+            'picture' => ['nullable','mimes:jpg,jpeg,png', 'max:4096'],
+            'photos'   => ['nullable', 'array'],
+            'photos.*' => ['nullable','image','mimes:jpg,jpeg,png','max:4096'],
+            'title' => ['nullable', 'array'],
+            'title.*' => ['nullable', 'string'],
         ]);
 
-        $car = new Car;
-        $car->name = $request->name;
-        $car->except = $request->except;
-        $car->description = $request->description;
-        $car->model = $request->model;
-        $car->manufacture = $request->manufacture;
-        $car->brand_id = $request->brand_id;
-        $car->price = $request->price;
-        $car->tax_id = $request->tax_id;
-
-        $avatarPath = null;
         if (request()->hasFile('picture')) {
+            //$avatarPath = null;
             $avatarName = pathinfo(request()->file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
             $avatarExt = request()->file('picture')->getClientOriginalExtension();
             $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+
             $avatarPath = request()->file('picture')->storeAs(
                 'uploads/cars',
                 $avatarNewName,
                 'public',
             );
-            $car->picture = $avatarPath;
+            $attributes['picture'] = $avatarPath;
         }
 
-        $newcar = $car->save();
-        $title = $request->title;
+        $car = Car::create($attributes);
 
-        foreach($request->photo as $k => $photo){
-            $pic = new Picture;
-            $pic->car_id = $car->id;
-            $pic->title = $title[$k];
-            $avatarName = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-            $avatarExt = $photo->getClientOriginalExtension();
-            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
-            $avatarPath = $photo->storeAs(
-                'uploads/cars',
-                $avatarNewName,
-                'public',
-            );
-            $pic->picture = $avatarPath;
-            $pic->save();
+        if (request()->hasFile('photos')) {
+            //$avatarPathPhoto = null;
+            foreach (request()->file('photos') as $photo) {
+
+                $avatarNamePhoto = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                $avatarExtPhoto = $photo->getClientOriginalExtension();
+                $avatarNewNamePhoto = $avatarNamePhoto . '-' . uniqid() . '.' . $avatarExtPhoto;
+                $avatarPathPhoto = $photo->storeAs(
+                    'uploads/cars',
+                    $avatarNewNamePhoto,
+                    'public',
+                );
+
+                $car->pictures()->create([
+                    'car_id' => $car->id,
+                    'title' => $attributes['title'],
+                    'picture' => $avatarPathPhoto,
+                ]);
+
+            }
         }
 
         return redirect('admin/cars')->with('message', 'Car added successfully!');
+
+
+//        $this->validate(request(), [
+//            'name' => 'required',
+//            'except' => 'nullable',
+//            'description' => 'nullable',
+//            'model' => 'nullable',
+//            'manufacture' => 'nullable',
+//            'brand_id' => 'required',
+//            'price' => 'required',
+//            'tax_id' => 'nullable',
+//            'picture' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+//            'photos' => ['nullable', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+//            'title' => 'nullable',
+//        ]);
+//
+//        $car = new Car;
+//        $car->name = $request->name;
+//        $car->except = $request->except;
+//        $car->description = $request->description;
+//        $car->model = $request->model;
+//        $car->manufacture = $request->manufacture;
+//        $car->brand_id = $request->brand_id;
+//        $car->price = $request->price;
+//        $car->tax_id = $request->tax_id;
+//
+//        $avatarPath = null;
+//        if (request()->hasFile('picture')) {
+//            $avatarName = pathinfo(request()->file('picture')->getClientOriginalName(), PATHINFO_FILENAME);
+//            $avatarExt = request()->file('picture')->getClientOriginalExtension();
+//            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+//            $avatarPath = request()->file('picture')->storeAs(
+//                'uploads/cars',
+//                $avatarNewName,
+//                'public',
+//            );
+//            $car->picture = $avatarPath;
+//        }
+//
+//        $newcar = $car->save();
+//        $title = $request->title;
+//
+//        foreach($request->photos as $k => $photo){
+//            $pic = new Picture;
+//            $pic->car_id = $car->id;
+//            $pic->title = $title[$k];
+//            $avatarName = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+//            $avatarExt = $photo->getClientOriginalExtension();
+//            $avatarNewName = $avatarName . '-' . uniqid() . '.' . $avatarExt;
+//            $avatarPath = $photo->storeAs(
+//                'uploads/cars',
+//                $avatarNewName,
+//                'public',
+//            );
+//            $pic->picture = $avatarPath;
+//            $pic->save();
+//        }
+//
+//        return redirect('admin/cars')->with('message', 'Car added successfully!');
 
     }
 
